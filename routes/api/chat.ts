@@ -49,11 +49,7 @@ function extractAssistantText(anyJson: any): string {
   return "";
 }
 
-/** Turn plain text into a minimal OpenAI-style SSE stream for our UI
- *  NOTE: Wenn kein Text vorhanden ist, senden wir KEIN roles-Delta,
- *  sondern ein eigenes Event 'no_content', damit die UI keinen leeren
- *  Assistenten-Ballon rendert.
- */
+/** Turn plain text into a minimal OpenAI-style SSE stream for our UI */
 function sseFromText(text: string): ReadableStream<Uint8Array> {
   const enc = new TextEncoder();
   if (!text || !text.length) {
@@ -126,7 +122,6 @@ function base32DecodeNoPadding(s: string): Uint8Array {
 
 /** Convert "host:port" → "http://host:port" with IPv6 bracket handling */
 function hostPortToHttpBase(hostPort: string): string {
-  // Split at last ":" to separate port; IPv6 contains multiple ":"s.
   const last = hostPort.lastIndexOf(":");
   let host = hostPort;
   let port = "";
@@ -140,35 +135,47 @@ function hostPortToHttpBase(hostPort: string): string {
   return `http://${bracketHost}${portPart}`;
 }
 
+function stripTrailingSlashes(u: string): string {
+  return u.replace(/\/+$/g, "");
+}
+
 /** Decode middleware base URL from the composite universal key (or return null). */
 function decodeMiddlewareBaseFromUniversalKey(universalApiKey: string | undefined | null): string | null {
   const raw = (universalApiKey || "").trim();
   const hash = raw.indexOf("#");
   if (hash < 0) return null;
-  const suffix = raw.slice(hash + 1);
+  const suffix = raw.slice(hash + 1).trim();
+  if (!suffix) return null;
 
-  // Backward compatibility: if someone ever issued raw http(s) URL suffixes, accept them.
+  // 1) http(s)://...
   if (/^https?:\/\/.+/i.test(suffix)) {
-    return suffix.replace(/\/+$/g, "");
+    try {
+      const u = new URL(suffix);
+      return stripTrailingSlashes(`${u.protocol}//${u.host}`);
+    } catch {
+      return null;
+    }
   }
 
-  // Expected scheme: 'v1' + Base32(no padding) of XOR'd bytes
+  // 2) bare host:port
+  if (/^[A-Za-z0-9.\-]+:\d+$/.test(suffix)) {
+    return stripTrailingSlashes(hostPortToHttpBase(suffix));
+  }
+
+  // 3) encoded form: v1 + Base32(no padding) of XOR'd bytes
   if (!suffix.startsWith("v1")) return null;
   try {
     const b32 = suffix.slice(2);
     const bytes = base32DecodeNoPadding(b32);
-    // XOR with 0x5A to recover original "host:port" ascii
-    for (let i = 0; i < bytes.length; i++) bytes[i] = bytes[i] ^ 0x5a;
-    const hostPort = new TextDecoder().decode(bytes);
-    // Basic sanity: must contain ":" (port) and some host
-    if (!hostPort || hostPort.indexOf(":") === -1) return null;
-    return hostPortToHttpBase(hostPort).replace(/\/+$/g, "");
+    for (let i = 0; i < bytes.length; i++) bytes[i] = bytes[i] ^ 0x5a; // un-XOR
+    const hostPort = new TextDecoder().decode(bytes).trim();
+    if (!/^[A-Za-z0-9.\-]+:\d+$/.test(hostPort)) return null;
+    return stripTrailingSlashes(hostPortToHttpBase(hostPort));
   } catch {
     return null;
   }
 }
 
-// --- REPLACE THE WHOLE FUNCTION STARTING HERE ---
 async function getModelResponseStream(
   messages: Message[],
   lang: string,
@@ -181,22 +188,22 @@ async function getModelResponseStream(
   vlmApiKey: string,
   vlmApiModel: string,
   vlmCorrectionModel: string,
-  wantsStream: boolean | undefined, // NEW
+  wantsStream: boolean | undefined,
+  originBase: string | undefined, // request origin for fallback
 ) {
-  // If a universal key is provided, override URLs to the middleware using decoded base; fallback to env.
+  // If a universal key is provided, override URLs to the middleware using decoded base; fallback to env → origin.
   if (universalApiKey) {
     const decoded = decodeMiddlewareBaseFromUniversalKey(universalApiKey);
-    const base = decoded || (MIDDLEWARE_BASE_URL || "").trim();
-    const source = decoded ? "decoded" : (base ? "env" : "none");
+    const envBase = (MIDDLEWARE_BASE_URL || "").trim();
+    const base = decoded || envBase || (originBase || "").trim();
+    const source = decoded ? "decoded" : (envBase ? "env" : (originBase ? "origin" : "none"));
 
     if (base) {
-      const clean = base.replace(/\/+$/g, "");
+      const clean = stripTrailingSlashes(base);
       llmApiUrl = `${clean}/v1/chat/completions`;
       vlmApiUrl = `${clean}/v1/chat/completions`;
       llmApiKey = universalApiKey;
       vlmApiKey = universalApiKey;
-
-      // 👇 One concise debug line
       console.log(`[MW] chat source=${source} base=${clean}`);
     }
   }
@@ -217,11 +224,54 @@ async function getModelResponseStream(
   const isCorrectionInLastMessage = hasKorrekturHashtag(messages);
 
   // 4) System prompt
+  //    The built-in prompts already document the tools. A user-supplied prompt
+  //    does not, so the compact tool-usage block (search, imagegen, imageedit,
+  //    character consistency via reference images) is prepended automatically –
+  //    the custom prompt keeps defining persona and behaviour, but the model
+  //    never loses the tool knowledge.
   let useThisSystemPrompt = isCorrectionInLastMessage
     ? chatContent[lang].correctionSystemPrompt
     : chatContent[lang].systemPrompt;
-  if (systemPrompt != "") useThisSystemPrompt = systemPrompt;
+  if (systemPrompt != "") {
+    const toolPrefix = chatContent[lang]?.toolUsagePrompt ?? "";
+    useThisSystemPrompt = toolPrefix + systemPrompt;
+  }
   messages.unshift({ role: "system", content: useThisSystemPrompt });
+
+  // 4b) Sanitize multimodal content before forwarding upstream.
+  //     - Chat APIs reject images inside *assistant* turns, so generated images
+  //       become a text marker. The ID stays visible so the model can still
+  //       reference it later via {"imageedit": {"image_id": "gen_00001", ...}}.
+  //       The actual pixels are resolved client-side for image editing.
+  //     - Strip our bookkeeping fields (id/source/timestamp/filename) from image
+  //       parts, since strict OpenAI-compatible endpoints reject unknown keys.
+  messages = messages.map((m) => {
+    if (!Array.isArray(m.content)) return m;
+
+    if (m.role === "assistant") {
+      const parts = m.content.map((c: any) => {
+        if (c?.type === "image_url") {
+          const label = c.id ? `[generated image: ${c.id}]` : "[generated image]";
+          return { type: "text", text: label };
+        }
+        return c;
+      });
+      // Collapse to a plain string when only text is left – simpler for upstream.
+      const allText = parts.every((c: any) => c?.type === "text");
+      return allText
+        ? { ...m, content: parts.map((c: any) => c.text ?? "").join("\n") }
+        : { ...m, content: parts };
+    }
+
+    return {
+      ...m,
+      content: m.content.map((c: any) =>
+        c?.type === "image_url"
+          ? { type: "image_url", image_url: c.image_url }
+          : c
+      ),
+    };
+  });
 
   // 5) Multimodality detection
   const isImageInMessages = messages.some(
@@ -281,7 +331,8 @@ async function getModelResponseStream(
         return { role: m.role === "assistant" ? "model" : "user", parts };
       });
 
-    if (wantsStream !== false) {
+    const wantsGeminiStream = (wantsStream !== false);
+    if (wantsGeminiStream) {
       const geminiUrl =
         `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(geminiModel)}` +
         `:streamGenerateContent?alt=sse&key=${encodeURIComponent(geminiApiKey)}`;
@@ -311,10 +362,7 @@ async function getModelResponseStream(
             let sentAny = false;
             const finish = () => {
               if (closed) return;
-              // Wenn kein Text kam: no_content signalisieren
-              if (!sentAny) {
-                controller.enqueue({ event: "no_content", data: "{}", id: Date.now() });
-              }
+              if (!sentAny) controller.enqueue({ event: "no_content", data: "{}", id: Date.now() });
               closed = true;
               controller.close();
             };
@@ -383,7 +431,7 @@ async function getModelResponseStream(
                       controller.enqueue({ data: JSON.stringify(chunk), id: Date.now(), event: "message" });
                     }
                   } catch {
-                    // ignore
+                    // ignore non-JSON chunks
                   }
                 }
               }
@@ -404,7 +452,6 @@ async function getModelResponseStream(
             }
           },
           cancel(err) {
-            // Silence normal closures; log only unexpected ones.
             const s = String(err || "").toLowerCase();
             if (err && !s.includes("resource closed") && !s.includes("aborterror")) {
               console.warn("SSE canceled:", err);
@@ -431,19 +478,19 @@ async function getModelResponseStream(
       });
     }
   }
+
   // 7) LLM/VLM (no PDF) → upstream (middleware or direct)
   let useApiUrl = llmApiUrl || Deno.env.get("LLM_URL") || API_URL;
   let useApiKey = llmApiKey || Deno.env.get("LLM_KEY") || API_KEY;
   let useApiModel = llmApiModel || Deno.env.get("LLM_MODEL") || API_MODEL;
 
-  // use the isImageInMessages computed earlier in Step 5
   if (isImageInMessages) {
     useApiUrl = vlmApiUrl || Deno.env.get("VLM_URL") || API_IMAGE_URL;
     useApiKey = vlmApiKey || Deno.env.get("VLM_KEY") || API_IMAGE_KEY;
     const chosenVlmModel =
       hasKorrekturHashtag(messages) && vlmCorrectionModel
         ? vlmCorrectionModel
-        : vlmApiModel || Deno.env.get("VLM_MODEL") || API_IMAGE_MODEL;
+        : vlmApiModel || Deno.env.get("VLM_MODEL") || API_IMAGE_MODEL || API_IMAGE_CORRECTION_MODEL;
     useApiModel = chosenVlmModel;
   }
 
@@ -461,7 +508,7 @@ async function getModelResponseStream(
     });
   }
 
-  // Stream: request SSE and forward
+  // Stream: request SSE and forward (TEXT-ONLY DELTAS)
   return new Response(
     new ReadableStream({
       async start(controller) {
@@ -469,9 +516,7 @@ async function getModelResponseStream(
         let sentAny = false;
         const finish = () => {
           if (closed) return;
-          if (!sentAny) {
-            controller.enqueue({ event: "no_content", data: "{}", id: Date.now() });
-          }
+          if (!sentAny) controller.enqueue({ event: "no_content", data: "{}", id: Date.now() });
           closed = true;
           controller.close();
         };
@@ -540,11 +585,13 @@ async function getModelResponseStream(
                 try {
                   const data = JSON.parse(jsonStr);
                   const delta = data?.choices?.[0]?.delta;
-                  if (delta?.content !== undefined && delta?.content !== null) {
+                  // Only forward text deltas; ignore role/tool/etc. objects
+                  if (typeof delta?.content === "string" && delta.content.length > 0) {
                     if (delta.content === "<|im_end|>") {
                       finish();
                     } else {
                       sentAny = true;
+                      // IMPORTANT: emit a JSON *string* so client JSON.parse(ev.data) => string
                       controller.enqueue({ data: JSON.stringify(delta.content), id: Date.now(), event: "message" });
                     }
                   }
@@ -552,8 +599,10 @@ async function getModelResponseStream(
                     controller.enqueue({ event: "error", data: JSON.stringify(data.error), id: Date.now() });
                   }
                 } catch {
-                  if (jsonStr.toLowerCase().includes("error")) {
-                    controller.enqueue({ event: "error", data: JSON.stringify({ message: jsonStr }), id: Date.now() });
+                  // Some relays emit non-JSON "data:" lines; forward as text
+                  if (jsonStr && jsonStr !== "[DONE]") {
+                    sentAny = true;
+                    controller.enqueue({ data: JSON.stringify(jsonStr), id: Date.now(), event: "message" });
                   }
                 }
               }
@@ -573,13 +622,8 @@ async function getModelResponseStream(
             while (true) {
               const { done, value } = await reader.read();
               if (done) break;
-              // sseFromText sendet bei leerem Text 'event: no_content'
-              // und bei nicht-leerem Text role+content.
               controller.enqueue(value);
               if (!sentAny) {
-                // Heuristik: sobald irgendein content-Frame kam, markiere sentAny
-                // (role-Delta kommt nur wenn Text existiert).
-                // Wir setzen sentAny true, wenn der Chunk einen content trägt.
                 try {
                   const s = new TextDecoder().decode(value);
                   if (s.includes('"content"')) sentAny = true;
@@ -613,10 +657,8 @@ async function getModelResponseStream(
     { headers: { "Content-Type": "text/event-stream" } },
   );
 }
-// --- REPLACE THE WHOLE FUNCTION ENDING HERE ---
 
 export const handler: Handlers = {
-  // Canonical entry: POST with JSON payload
   async POST(req: Request) {
     const payload = await req.json();
     const wantsStream: boolean | undefined = payload.stream;
@@ -628,11 +670,10 @@ export const handler: Handlers = {
       payload.systemPrompt,
       payload.vlmApiUrl, payload.vlmApiKey, payload.vlmApiModel, payload.vlmCorrectionModel,
       wantsStream,
+      new URL(req.url).origin,
     );
   },
 
-  // Allow GET (some clients/openers use EventSource or trigger GET accidentally)
-  // Accepts ?payload=<base64(json)> — if missing/invalid, return SSE error with guidance.
   async GET(req: Request) {
     const url = new URL(req.url);
     const payloadParam = url.searchParams.get("payload");
@@ -685,10 +726,10 @@ export const handler: Handlers = {
       payload.systemPrompt,
       payload.vlmApiUrl, payload.vlmApiKey, payload.vlmApiModel, payload.vlmCorrectionModel,
       wantsStream,
+      new URL(req.url).origin,
     );
   },
 
-  // Handle preflight cleanly to avoid 405 on OPTIONS
   async OPTIONS(_req: Request) {
     return new Response(null, {
       status: 204,
