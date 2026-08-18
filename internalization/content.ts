@@ -241,7 +241,7 @@ export const settingsContent: InternalizationContent = {
     vlmTitle: "Vision & PDF Language Model",
     mailSyncTitle: "Sync via your own mailbox",
     mailSyncHint:
-      "BUD-E can store all chats and images as an encryptable backup in an IMAP mailbox you own, so a second device can pick them up. The credentials stay in this browser and are only passed through the server for each single operation.",
+      "School Bud-E can store all chats and images as an encryptable backup in an IMAP mailbox you own, so a second device can pick them up. The credentials stay in this browser and are only passed through the server for each single operation.",
     imapHostLabel: "IMAP server",
     imapHostPlaceholder: "imap.example.com",
     imapPortLabel: "Port",
@@ -315,7 +315,7 @@ export const settingsContent: InternalizationContent = {
     vlmTitle: "Bild- und PDF-Verarbeitung",
     mailSyncTitle: "Abgleich über dein eigenes Postfach",
     mailSyncHint:
-      "BUD-E kann alle Chats und Bilder als Sicherung in einem IMAP-Postfach ablegen, das dir gehört - ein zweites Gerät holt sie sich von dort. Die Zugangsdaten bleiben in diesem Browser und werden nur für die jeweilige Aktion an den Server durchgereicht.",
+      "School Bud-E kann alle Chats und Bilder als Sicherung in einem IMAP-Postfach ablegen, das dir gehört - ein zweites Gerät holt sie sich von dort. Die Zugangsdaten bleiben in diesem Browser und werden nur für die jeweilige Aktion an den Server durchgereicht.",
     imapHostLabel: "IMAP-Server",
     imapHostPlaceholder: "imap.example.com",
     imapPortLabel: "Port",
