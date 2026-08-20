@@ -264,9 +264,9 @@ export const settingsContent: InternalizationContent = {
     sttTitle: "Speech-to-Text",
     vlmTitle: "Vision & PDF Language Model",
     mailSyncTitle: "Sync via your own mailbox",
-    mailSkillTitle: "Let Bud-E manage your mail",
+    mailSkillTitle: "Let School Bud-E manage your mail",
     mailSkillHint:
-      "Bud-E can then search the mailbox, read single messages out to you, save drafts and hand you attachments - like a secretary. It uses the same mailbox as the sync above. Listings only ever carry sender, date and subject; a message is opened one at a time and only when needed.",
+      "School Bud-E can then search the mailbox, read single messages out to you, save drafts and hand you attachments - like a secretary. It uses the same mailbox as the sync above. Listings only ever carry sender, date and subject; a message is opened one at a time and only when needed.",
     mailAllow: "Allow access to the mailbox",
     mailFolders: "Folders (comma separated)",
     mailListLimit: "Messages per search",
@@ -350,9 +350,9 @@ export const settingsContent: InternalizationContent = {
     sttTitle: "Sprache-zu-Text",
     vlmTitle: "Bild- und PDF-Verarbeitung",
     mailSyncTitle: "Abgleich über dein eigenes Postfach",
-    mailSkillTitle: "Bud-E darf deine Mails verwalten",
+    mailSkillTitle: "School Bud-E darf deine Mails verwalten",
     mailSkillHint:
-      "Bud-E kann dann das Postfach durchsuchen, dir einzelne Nachrichten vorlesen, Entwürfe speichern und dir Anhänge geben - wie ein Sekretär. Er nutzt dasselbe Postfach wie der Abgleich oben. Übersichten enthalten immer nur Absender, Datum und Betreff; eine Nachricht wird einzeln geöffnet und nur dann, wenn sie gebraucht wird.",
+      "School Bud-E kann dann das Postfach durchsuchen, dir einzelne Nachrichten vorlesen, Entwürfe speichern und dir Anhänge geben - wie ein Sekretär. Er nutzt dasselbe Postfach wie der Abgleich oben. Übersichten enthalten immer nur Absender, Datum und Betreff; eine Nachricht wird einzeln geöffnet und nur dann, wenn sie gebraucht wird.",
     mailAllow: "Zugriff auf das Postfach erlauben",
     mailFolders: "Ordner (durch Komma getrennt)",
     mailListLimit: "Nachrichten je Suche",
@@ -528,15 +528,15 @@ export const mailSyncContent: InternalizationContent = {
 export const notebookContent: InternalizationContent = {
   en: {
     title: "Python notebook",
-    allowAssistant: "Let Bud-E change this notebook",
+    allowAssistant: "Let School Bud-E change this notebook",
     allowAssistantHint:
-      "Bud-E can then read the cells and their output and write code for you - ask for a new notebook, a fix, or an extra cell. Without the tick it sees nothing of this notebook.",
-    contextLimits: "How much Bud-E sees",
+      "School Bud-E can then read the cells and their output and write code for you - ask for a new notebook, a fix, or an extra cell. Without the tick it sees nothing of this notebook.",
+    contextLimits: "How much School Bud-E sees",
     limitSource: "Characters of code per cell",
     limitOutput: "Characters of output per cell",
     limitCells: "Cells at most",
     limitsHint:
-      "Bud-E only gets this much per cell. Less keeps the conversation short, more helps with long programs. Output is cut from the front, so an error message at the end stays visible.",
+      "School Bud-E only gets this much per cell. Less keeps the conversation short, more helps with long programs. Output is cut from the front, so an error message at the end stays visible.",
     subtitle: "Write and run Python - right here in your browser",
     startHere: "New here? Start with an example",
     startHereBody:
@@ -618,15 +618,15 @@ export const notebookContent: InternalizationContent = {
   },
   de: {
     title: "Python-Notebook",
-    allowAssistant: "Bud-E darf dieses Notebook ändern",
+    allowAssistant: "School Bud-E darf dieses Notebook ändern",
     allowAssistantHint:
-      "Bud-E sieht dann die Zellen samt Ausgabe und kann Code für dich schreiben - bitte um ein neues Notebook, eine Korrektur oder eine zusätzliche Zelle. Ohne Haken sieht er von diesem Notebook nichts.",
-    contextLimits: "Wie viel Bud-E sieht",
+      "School Bud-E sieht dann die Zellen samt Ausgabe und kann Code für dich schreiben - bitte um ein neues Notebook, eine Korrektur oder eine zusätzliche Zelle. Ohne Haken sieht er von diesem Notebook nichts.",
+    contextLimits: "Wie viel School Bud-E sieht",
     limitSource: "Zeichen Code je Zelle",
     limitOutput: "Zeichen Ausgabe je Zelle",
     limitCells: "Zellen höchstens",
     limitsHint:
-      "Mehr als das bekommt Bud-E je Zelle nicht. Weniger hält das Gespräch kurz, mehr hilft bei langen Programmen. Ausgaben werden vorn gekürzt, damit eine Fehlermeldung am Ende sichtbar bleibt.",
+      "Mehr als das bekommt School Bud-E je Zelle nicht. Weniger hält das Gespräch kurz, mehr hilft bei langen Programmen. Ausgaben werden vorn gekürzt, damit eine Fehlermeldung am Ende sichtbar bleibt.",
     subtitle: "Python schreiben und ausführen - direkt hier im Browser",
     startHere: "Zum ersten Mal hier? Fang mit einem Beispiel an",
     startHereBody:

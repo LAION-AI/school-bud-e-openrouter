@@ -69,19 +69,12 @@ export default function Settings({
   onClose: () => void;
   lang?: string;
 }) {
-  // --- Default system prompt resolution (pre-fill the textbox) ---
-  const DEFAULT_SYSTEM_PROMPT =
-    (settingsContent?.[lang]?.systemPromptDefault as string | undefined) ??
-    (settingsContent?.en?.systemPromptDefault as string | undefined) ??
-    "";
-
-  // Initialize state; if nothing saved yet, show the default in the box.
+  // The system prompt is not editable in School Bud-E (see the note further
+  // down). Saving clears whatever an earlier version may have left behind, so
+  // an old value cannot linger in this browser.
   const [newSettings, setNewSettings] = useState({
     ...settings,
-    systemPrompt:
-      (settings?.systemPrompt && settings.systemPrompt.trim().length > 0
-        ? settings.systemPrompt
-        : DEFAULT_SYSTEM_PROMPT),
+    systemPrompt: "",
   });
 
   const [showAdvanced, setShowAdvanced] = useState(false);
@@ -286,24 +279,10 @@ export default function Settings({
           />
         </div>
 
-        {/* System Prompt (persists locally) */}
-        <div class="mb-4">
-          {/* Plain label (no emoji), so no "??" */}
-          <label class="block text-sm font-medium text-gray-700 mb-2">
-            {settingsContent[lang].systemPromptLabel}
-          </label>
-          <textarea
-            value={newSettings.systemPrompt}
-            onChange={(e) =>
-              updateSettings(
-                "systemPrompt",
-                (e.target as HTMLTextAreaElement).value,
-              )
-            }
-            class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 min-h-[8rem]"
-            placeholder="Optional: override the default system prompt for all chats in this browser"
-          />
-        </div>
+        {/* The system prompt is deliberately not editable here: School Bud-E
+            is used by pupils, and a replaced prompt is the simplest way around
+            its guardrails. The server ignores the field as well, so removing
+            the box is not the only line of defence. */}
 
         {/* Mailbox sync (own section, collapsed by default) */}
         <div class="mb-4 border rounded">

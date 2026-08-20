@@ -13,6 +13,19 @@ const API_IMAGE_CORRECTION_MODEL = Deno.env.get("VLM_CORRECTION_MODEL") || "";
 const MIDDLEWARE_BASE_URL = Deno.env.get("MIDDLEWARE_URL") || "";
 
 /**
+ * School Bud-E runs in classrooms, so a pupil must not be able to replace the
+ * system prompt and talk the assistant out of its guardrails.
+ *
+ * The field is hidden in the settings, but hiding it stops nobody who can
+ * craft a request by hand - so the server ignores what the client sends and
+ * always uses its own prompt. Fails closed on purpose: set
+ * ALLOW_CUSTOM_SYSTEM_PROMPT=1 to re-enable it for an installation that is
+ * not a classroom.
+ */
+const ALLOW_CUSTOM_SYSTEM_PROMPT =
+  Deno.env.get("ALLOW_CUSTOM_SYSTEM_PROMPT") === "1";
+
+/**
  * Which permission-gated tools are active, plus the handful of facts that make
  * the instructions concrete. Everything here is data from an untrusted client,
  * so the values are clamped and stripped of line breaks before they go
@@ -48,21 +61,34 @@ function buildToolSection(flags: ToolFlags, lang: string): string {
 
   if (flags.notebook) {
     parts.push(chatContent[lang]?.notebookToolPrompt ?? "");
-    if (flags.notebookName) {
+    // Only the count, never the name. A notebook name is free text the user
+    // types, and anything user-written that lands in the system prompt is an
+    // invitation to talk the assistant out of its instructions. The model can
+    // learn the name from a "read" call, where it arrives as data.
+    if (flags.notebookCells > 0) {
       parts.push(
         de
-          ? `Gerade geöffnet: Notebook "${flags.notebookName}" mit ${flags.notebookCells} Zellen.`
-          : `Currently open: notebook "${flags.notebookName}" with ${flags.notebookCells} cells.`,
+          ? `Gerade ist ein Notebook mit ${flags.notebookCells} Zellen geöffnet.`
+          : `A notebook with ${flags.notebookCells} cells is currently open.`,
       );
     }
   }
   if (flags.mail) {
     parts.push(chatContent[lang]?.mailToolPrompt ?? "");
-    if (flags.mailFolders.length) {
+    // Folder names have to be exact for the tool to work, so they cannot be
+    // dropped - but a folder is a label, not a sentence. Restricting the
+    // characters is not enough on its own ("Ignore your rules." is all
+    // letters), so the word count is capped as well.
+    const folders = flags.mailFolders.filter((f) =>
+      f.length <= 40 &&
+      /^[\p{L}\p{N} ._\/-]+$/u.test(f) &&
+      f.trim().split(/\s+/).length <= 3
+    );
+    if (folders.length) {
       parts.push(
         de
-          ? `Freigegebene Ordner: ${flags.mailFolders.join(", ")}.`
-          : `Permitted folders: ${flags.mailFolders.join(", ")}.`,
+          ? `Freigegebene Ordner: ${folders.join(", ")}.`
+          : `Permitted folders: ${folders.join(", ")}.`,
       );
     }
   }
@@ -290,9 +316,13 @@ async function getModelResponseStream(
   let useThisSystemPrompt = isCorrectionInLastMessage
     ? chatContent[lang].correctionSystemPrompt
     : chatContent[lang].systemPrompt;
-  if (systemPrompt != "") {
+  if (ALLOW_CUSTOM_SYSTEM_PROMPT && systemPrompt != "") {
     const toolPrefix = chatContent[lang]?.toolUsagePrompt ?? "";
     useThisSystemPrompt = toolPrefix + systemPrompt;
+  } else if (systemPrompt != "") {
+    console.warn(
+      "[chat] ignoring a custom system prompt - not permitted on this install",
+    );
   }
   // Tool instructions are composed here, from our own text. The client only
   // says which permissions are on and passes a few facts; anything it sends is
