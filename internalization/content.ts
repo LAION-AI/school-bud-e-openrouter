@@ -647,7 +647,7 @@ export const notebookContent: InternalizationContent = {
       "Click into a cell and press Ctrl+Enter, or use the small triangle. Whatever the program prints appears right below the cell. The cells share their variables, so what you define at the top is still known further down.",
     helpFirstRunTitle: "The first run takes a moment",
     helpFirstRun:
-      "Python itself has to be downloaded first, about 12 MB. BUD-E fetches it quietly in the background while you are doing something else, so by the time you open this window it is usually already there. Larger tools like numpy or matplotlib are only fetched when a program actually imports them.",
+      "Python itself has to be downloaded first, about 12 MB. School Bud-E fetches it quietly in the background while you are doing something else, so by the time you open this window it is usually already there. Larger tools like numpy or matplotlib are only fetched when a program actually imports them.",
     helpNotebooksTitle: "Several notebooks",
     helpNotebooks:
       "Under \"Notebooks\" you create as many as you want and switch between them; the name is editable at the top. Right beside it are ready-made examples, from the first print to a small game - each opens as your own copy.",
@@ -738,7 +738,7 @@ export const notebookContent: InternalizationContent = {
       "Klick in eine Zelle und drücke Strg+Enter, oder nimm das kleine Dreieck. Was das Programm ausgibt, erscheint direkt unter der Zelle. Die Zellen teilen sich ihre Variablen - was du oben festlegst, ist weiter unten noch bekannt.",
     helpFirstRunTitle: "Der erste Start dauert kurz",
     helpFirstRun:
-      "Python selbst muss erst geladen werden, etwa 12 MB. BUD-E holt es still im Hintergrund, während du etwas anderes machst - wenn du dieses Fenster öffnest, ist es meist schon da. Größere Werkzeuge wie numpy oder matplotlib kommen erst dazu, wenn ein Programm sie wirklich benutzt.",
+      "Python selbst muss erst geladen werden, etwa 12 MB. School Bud-E holt es still im Hintergrund, während du etwas anderes machst - wenn du dieses Fenster öffnest, ist es meist schon da. Größere Werkzeuge wie numpy oder matplotlib kommen erst dazu, wenn ein Programm sie wirklich benutzt.",
     helpNotebooksTitle: "Mehrere Notebooks",
     helpNotebooks:
       "Unter \"Notebooks\" legst du beliebig viele an und wechselst zwischen ihnen; den Namen änderst du oben im Feld. Direkt daneben stehen fertige Beispiele, vom ersten print bis zum kleinen Spiel - jedes öffnet sich als deine eigene Kopie.",
