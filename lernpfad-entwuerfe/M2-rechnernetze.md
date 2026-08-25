@@ -1,217 +1,182 @@
 # M2 — Kommunikation und Rechnernetze
 
-**Entwurf für einen Lernpfad** · Themenfeld Sicherheit in verteilten Systemen ·
-Jahrgang 7–10
+**Modulentwurf** · Fach Informatik · Themenfeld Sicherheit in verteilten Systemen · Jahrgang 7–10
 
-```
-key      wie-daten-reisen
-title    Wie Daten den Weg zu dir finden
-summary  Was zwischen dem Tippen einer Adresse und dem Erscheinen der Seite
-         wirklich passiert — und wie viele fremde Rechner daran beteiligt sind.
-icon     🌐
-accent   sky
-minutes  16
+## Die Moduldefinition
+
+```json
+{
+  "key": "m2-rechnernetze",
+  "title": { "de": "Kommunikation und Rechnernetze", "en": "Communication and computer networks" },
+  "description": {
+    "de": "Was zwischen dem Tippen einer Adresse und dem Erscheinen der Seite wirklich passiert - und wie viele fremde Rechner daran beteiligt sind.",
+    "en": "What really happens between typing an address and the page appearing - and how many strangers' machines are involved."
+  },
+  "icon": "🌐",
+  "accent": "sky",
+  "badge": "M2"
+}
 ```
 
-### Verbindliche Fachbegriffe
+## Verbindliche Fachbegriffe
 
 das Client-Server-Prinzip · das DHCP · das DNS · das Gateway · der Hostname ·
 die IP-Adresse · die Kommunikation · der Ping · das Protokoll · der Router ·
 der Server · das Subnetz · der Switch
 
-### Leitgedanke des Bildungsplans
+| Pfad | deckt ab |
+|---|---|
+| 1 | Kommunikation, Protokoll |
+| 2 | IP-Adresse, Subnetz, Switch, Ping |
+| 3 | Router, Gateway, DHCP |
+| 4 | DNS, Hostname, Server, Client-Server-Prinzip |
+| 5 | — (Anwendung und Reflexion) |
+
+## Leitgedanke des Bildungsplans
 
 > Die Schülerinnen und Schüler lernen die konzeptionellen Grundlagen und
 > Funktionsweisen von Rechnernetzen kennen und bauen dazu ein eigenes Netzwerk
 > auf.
 
-> **Bezug:** Der bestehende Pfad *„Wie eine E-Mail funktioniert"* erklärt
-> Client, Server und Provider bereits am Beispiel E-Mail. Dieser Entwurf setzt
-> das voraus und geht eine Ebene tiefer — auf Adressen, Wege und Pakete. Wer
-> beide einsetzt, sollte E-Mail zuerst nehmen.
+**Bezug zur Grundbildung:** Der bestehende Pfad *„Wie eine E-Mail funktioniert"*
+erklärt Client, Server und Provider schon am Beispiel E-Mail. Dieses Modul setzt
+ihn voraus und geht eine Ebene tiefer — auf Adressen, Wege und Pakete. Wer beides
+einsetzt, nimmt E-Mail zuerst.
 
 ---
 
-## Bildschirm 1 — Eine Nachricht, die niemand ganz gesehen hat
+## Die fünf Lernpfade
 
-**lead**
-Du tippst eine Adresse ein und drückst Enter. Bis die Seite da ist, vergeht
-weniger als eine Sekunde. In dieser Sekunde war deine Anfrage bei einer
-Handvoll Rechner, von denen keiner die ganze Nachricht kannte — und trotzdem
-kam alles vollständig an.
-
-**paragraph**
-Damit das klappt, muss vorher etwas verabredet worden sein. Solche Verabredungen
-heißen **Protokolle**: feste Regeln, wer wann was sagt und in welcher Form.
-Nicht anders als beim Telefonieren — erst „Hallo?", dann der Name, dann das
-Anliegen. Wenn zwei sich nicht an dieselbe Reihenfolge halten, redet man
-aneinander vorbei.
-
-**timeline**
-- **1837** — Der Telegraf. Erstmals ist eine Nachricht schneller als der Bote,
-  der sie trägt.
-- **1876** — Das Telefon. Eine feste Leitung, exklusiv für zwei Gesprächspartner.
-- **1969** — Das ARPANET. Vier Rechner. Die erste Nachricht sollte „LOGIN"
-  heißen; nach „LO" stürzte das System ab.
-- **1989** — Das World Wide Web. Nicht das Internet selbst, sondern ein Dienst
-  darauf.
-
-**fact-callout · 📦 · Warum Pakete und keine Leitung?**
-Beim Telefon war eine Leitung während des Gesprächs für zwei Leute reserviert —
-auch in den Sprechpausen. Das Internet macht es anders: Es zerlegt jede
-Nachricht in **Datenpakete**, die einzeln reisen und sich die Wege mit allen
-anderen teilen. Deshalb können Millionen gleichzeitig verbunden sein, ohne dass
-für jeden eine eigene Leitung gebaut werden muss.
-
-**paragraph**
-Jedes Paket trägt Absender und Empfänger — wie ein Briefumschlag. Und wie bei
-der Post kann es passieren, dass Pakete auf verschiedenen Wegen laufen und in
-falscher Reihenfolge ankommen. Dass am Ende trotzdem die richtige Seite auf dem
-Bildschirm steht, ist die Leistung des Protokolls, das die Teile wieder
-zusammensetzt und Fehlendes noch einmal anfordert.
+| # | Titel | Untertitel | UE der Handreichung |
+|---|---|---|---|
+| 1 | Eine Nachricht, die niemand ganz gesehen hat | Protokolle, Pakete und warum das Internet keine Leitung ist | 1 |
+| 2 | Jedes Gerät braucht eine Nummer | IP-Adressen, Subnetze und der einfachste Test der Welt | 2 |
+| 3 | Wege nach draußen | Switch, Router, Gateway — und wer die Nummern verteilt | 3 |
+| 4 | Von Namen zu Nummern | DNS, das Telefonbuch, das man erst bemerkt, wenn es ausfällt | 4 |
+| 5 | Bau dir ein Netz | Aufbauen, kaputtmachen, verstehen | 5–6 |
 
 ---
 
-## Bildschirm 2 — Jedes Gerät braucht eine Nummer
+### Pfad 1 — Eine Nachricht, die niemand ganz gesehen hat
 
-**lead**
-In einem Netz muss jedes Gerät ansprechbar sein. Dafür bekommt es eine Nummer:
-die **IP-Adresse**. Ohne sie ist ein Gerät im Netz das, was ein Haus ohne
+**Kernbild:** Zwischen Enter und fertiger Seite vergeht weniger als eine
+Sekunde. In dieser Sekunde war die Anfrage bei einer Handvoll Rechner, von denen
+keiner die ganze Nachricht kannte.
+
+**Bildschirme:**
+1. *Verabredungen* — ein Protokoll ist nichts anderes als die feste Reihenfolge
+   beim Telefonieren: „Hallo?", Name, Anliegen. Wer sich nicht daran hält, redet
+   aneinander vorbei.
+2. *Vier Daten* (Zeitleiste) — 1837 Telegraf, 1876 Telefon, 1969 ARPANET (die
+   erste Nachricht sollte „LOGIN" heißen; nach „LO" stürzte das System ab),
+   1989 World Wide Web — ein Dienst auf dem Internet, nicht das Internet selbst.
+3. *Warum Pakete und keine Leitung* — beim Telefon war eine Leitung auch in den
+   Sprechpausen reserviert; das Internet zerlegt jede Nachricht in Pakete, die
+   sich die Wege teilen. Deshalb können Millionen gleichzeitig verbunden sein.
+4. *Absender und Empfänger* — jedes Paket trägt beides wie ein Briefumschlag;
+   Pakete kommen in falscher Reihenfolge an, und das Protokoll setzt sie wieder
+   zusammen und fordert Fehlendes nach.
+
+**Aufgaben:** Lückentext zu Kommunikation, Protokoll, Datenpaket · Vergleich:
+eine feste Leitung gegen geteilte Wege — wofür ist welches besser? · Offen: Wo
+im Alltag hältst du dich an ein Protokoll, ohne es so zu nennen?
+
+---
+
+### Pfad 2 — Jedes Gerät braucht eine Nummer
+
+**Kernbild:** Ein Gerät ohne IP-Adresse ist im Netz das, was ein Haus ohne
 Hausnummer für den Postboten wäre.
 
-**table** — *Die Adresse in deinem WLAN*
+**Bildschirme:**
+1. *Netzanteil und Geräteanteil* — `192.168.1.42`, und die Subnetzmaske
+   `255.255.255.0` sagt, wo die Grenze verläuft (Tabelle)
+2. *Um die Ecke oder weiter weg* — Geräte im selben Subnetz reden direkt
+   miteinander; für alles andere braucht es jemanden, der den Weg kennt
+3. *Ping* — `ping 8.8.8.8` in der Eingabeaufforderung: ein winziges Paket, eine
+   gemessene Antwortzeit. Kommt keine Antwort, weiß man schon eine Menge.
+4. *Wo deine eigene Adresse steht* — `ipconfig` bzw. `ip addr`, und was die
+   Zeilen bedeuten
 
-| Teil | Beispiel | Bedeutung |
-|---|---|---|
-| Netzanteil | `192.168.1.` | in welchem Netz — bei allen Geräten zu Hause gleich |
-| Geräteanteil | `.42` | welches Gerät in diesem Netz |
-| **Subnetzmaske** | `255.255.255.0` | wo die Grenze zwischen beiden verläuft |
-
-**paragraph**
-Das **Subnetz** ist die Antwort auf die Frage „bist du bei mir um die Ecke oder
-weiter weg?". Geräte im selben Subnetz reden direkt miteinander. Für alles
-andere braucht es jemanden, der den Weg nach draußen kennt.
-
-**try-callout · 🏓 · Ping: der einfachste Test der Welt**
-Öffne die Eingabeaufforderung und tippe `ping 8.8.8.8`. Dein Rechner schickt
-ein winziges Paket los und misst, wie lange die Antwort braucht. Kommt eine
-Antwort, ist der Weg frei. Kommt keine, weißt du schon eine Menge — nämlich
-dass es nicht an der Webseite liegt.
-
-**steps**
-1. **Der Switch** verteilt Pakete innerhalb eines Netzes. Er kennt nur die
-   Geräte, die direkt an ihm hängen.
-2. **Der Router** verbindet zwei Netze miteinander und entscheidet, wohin ein
-   Paket als Nächstes geht.
-3. **Das Gateway** ist der Ausgang: die Adresse, an die alles geht, was nicht
-   ins eigene Subnetz gehört. Zu Hause ist das dein Router.
-4. **DHCP** verteilt die Adressen automatisch. Ohne diesen Dienst müsstest du
-   jedem neuen Gerät von Hand eine Nummer geben, die noch frei ist.
+**Aufgaben:** Lückentext zu IP-Adresse, Subnetz, Subnetzmaske, Ping · Vergleich:
+zwei Adressen sind gegeben — liegen sie im selben Subnetz? Begründung · Offen:
+Deine Adresse zu Hause beginnt bei fast allen mit `192.168`. Warum stört das
+niemanden?
 
 ---
 
-## Bildschirm 3 — Von Namen zu Nummern
+### Pfad 3 — Wege nach draußen
 
-**lead**
-Du tippst keine Nummern ein, sondern Namen. Rechner kennen aber nur Nummern.
-Zwischen beidem steht ein Dienst, der so selbstverständlich funktioniert, dass
-man ihn erst bemerkt, wenn er ausfällt: das **DNS**.
+**Kernbild:** Drei Geräte, drei Aufgaben — und keines kann die Aufgabe des
+anderen. Wer sie auseinanderhält, kann Störungen beschreiben statt sie nur zu
+haben.
 
-**paragraph**
-Das Domain Name System ist ein Telefonbuch für das Internet. Du fragst nach
-einem **Hostnamen**, es antwortet mit einer IP-Adresse. Die Antwort wird
-zwischengespeichert, damit nicht bei jedem Klick neu gefragt werden muss.
+**Bildschirme:**
+1. *Der Switch* — verteilt Pakete innerhalb eines Netzes, kennt nur, was direkt
+   an ihm hängt
+2. *Der Router* — verbindet zwei Netze und entscheidet, wohin ein Paket als
+   Nächstes geht
+3. *Das Gateway* — der Ausgang: die Adresse für alles, was nicht ins eigene
+   Subnetz gehört. Zu Hause ist das der Router.
+4. *DHCP* — verteilt die Adressen automatisch. Ohne diesen Dienst müsste man
+   jedem neuen Gerät von Hand eine freie Nummer geben.
 
-**steps**
-1. Du tippst `www.beispiel.de` ein.
-2. Dein Rechner fragt einen DNS-Server: Welche Nummer gehört dazu?
-3. Der antwortet, oder er fragt selbst weiter — von hinten nach vorn: erst wer
-   für `.de` zuständig ist, dann wer für `beispiel.de`.
-4. Dein Rechner schickt seine Anfrage an die Nummer, die zurückkam.
-5. Der **Server** dort antwortet. Das ist das **Client-Server-Prinzip**: einer
-   fragt, einer antwortet.
+**Aufgaben:** Lückentext zu Switch, Router, Gateway, DHCP · Vergleich: Der
+Kasten an der Wand heißt „Router" und ist in Wahrheit vier Geräte in einem —
+welche, und was macht jedes? · Offen: Was passiert in einem Netz, wenn zwei
+Geräte dieselbe Adresse haben — und wer merkt es zuerst?
 
-**warn-callout · 📵 · „Das Internet ist kaputt"**
-Meistens ist es das nicht. Wenn `ping 8.8.8.8` antwortet, aber keine Seite
-lädt, ist die Verbindung in Ordnung und nur die Namensauflösung gestört — DNS.
-Wer den Unterschied kennt, kann ein Problem beschreiben statt es nur zu haben.
-
-**fact-callout · 🔢 · Die Adressen sind ausgegangen**
-IPv4 hat rund 4,3 Milliarden Adressen. Das klang 1981 nach unendlich viel und
-reicht heute nicht mehr für die Geräte auf der Welt. Deshalb gibt es IPv6 mit
-128 statt 32 Bit — genug, um jedem Sandkorn der Erde mehrere Adressen zu geben.
+**Hinweis:** DHCP ist im Bildungsplan als optional ausgewiesen. Es gehört
+trotzdem hinein, sonst erscheint die Adressvergabe als Zauberei.
 
 ---
 
-## Bildschirm 4 — Bauen und hineinsehen
+### Pfad 4 — Von Namen zu Nummern
 
-**lead**
-Am schnellsten versteht man ein Netz, wenn man eines baut. In einer Simulation
-geht das ohne ein einziges Kabel.
+**Kernbild:** Du tippst Namen, Rechner kennen Nummern. Dazwischen steht ein
+Dienst, den man erst bemerkt, wenn er ausfällt.
 
-**steps**
-1. **Zwei Rechner an einen Switch.** Adressen aus demselben Subnetz vergeben,
-   pingen — es funktioniert.
-2. **Ein drittes Gerät in ein anderes Subnetz.** Pingen — es funktioniert
-   nicht. Nichts kaputt, sondern richtig: Es fehlt der Weg.
-3. **Einen Router dazwischen, Gateway eintragen.** Wieder pingen. Jetzt geht es.
-4. **Ein Kabel ziehen und beobachten**, wo genau die Antwort ausbleibt.
+**Bildschirme:**
+1. *Das Telefonbuch* — Hostname rein, IP-Adresse raus; Antworten werden
+   zwischengespeichert
+2. *Die Kette* — `www.beispiel.de` → DNS-Server → wer ist für `.de` zuständig →
+   wer für `beispiel.de` → Anfrage an die zurückgekommene Nummer → Antwort. Der
+   letzte Schritt ist das Client-Server-Prinzip: einer fragt, einer antwortet.
+3. *„Das Internet ist kaputt"* — meistens ist es das nicht. Wenn `ping 8.8.8.8`
+   antwortet, aber keine Seite lädt, ist die Verbindung in Ordnung und nur die
+   Namensauflösung gestört.
+4. *Die Adressen sind ausgegangen* — IPv4 hat rund 4,3 Milliarden Adressen; das
+   klang 1981 nach unendlich viel. IPv6 hat 128 statt 32 Bit — genug, um jedem
+   Sandkorn der Erde mehrere Adressen zu geben.
 
-**tip-callout · 🧪 · Absichtlich kaputtmachen**
-Trag eine falsche Subnetzmaske ein. Lösch das Gateway. Gib zwei Geräten
-dieselbe Adresse. Jeder dieser Fehler erzeugt ein anderes Fehlerbild — und wer
-die Bilder einmal gesehen hat, erkennt sie später wieder.
-
-**paragraph**
-Und die größere Frage: Das Internet wurde so gebaut, dass jeder mitmachen kann
-— Inhalte anbieten, abrufen, diskutieren, ohne jemanden um Erlaubnis zu fragen.
-Das war eine Entscheidung, keine Naturgegebenheit. Wem nützt sie, und was
-stünde auf dem Spiel, wenn sie zurückgenommen würde?
-
-**sources**
-- inf-schule.de: Rechnernetze — https://www.inf-schule.de/rechnernetze
-- RFC 791 — Internet Protocol — https://www.rfc-editor.org/rfc/rfc791
-- RFC 1034 — Domain Names, Concepts and Facilities —
-  https://www.rfc-editor.org/rfc/rfc1034
+**Aufgaben:** Lückentext zu DNS, Hostname, Server, Client-Server-Prinzip ·
+Vergleich: die Doppelaufgabe aus dem alten Entwurf — ein Rechner pingt, lädt
+aber nichts; ein anderer lädt, pingt aber nicht · Offen: Wer betreibt eigentlich
+die Server, die dir sagen, welche Nummer zu einem Namen gehört?
 
 ---
 
-## Die drei Aufgaben
+### Pfad 5 — Bau dir ein Netz
 
-### 1. Lückentext
+**Kernbild:** Am schnellsten versteht man ein Netz, wenn man eines baut — in
+einer Simulation ohne ein einziges Kabel. Und dann kaputtmacht.
 
-> Damit zwei Rechner sich verstehen, müssen sie sich an dieselben Regeln
-> halten; solche Regeln nennt man ___. Eine Nachricht wird dafür in einzelne
-> ___ zerlegt, die getrennt reisen. Jedes Gerät im Netz braucht eine eindeutige
-> Nummer, die ___. Ob zwei Geräte direkt miteinander reden können, entscheidet
-> das ___. Geräte innerhalb eines Netzes verbindet ein ___; zwei Netze
-> miteinander verbindet ein ___. Die Adresse, an die alles geht, was nach
-> draußen soll, heißt ___. Damit man Adressen nicht von Hand vergeben muss,
-> gibt es ___. Und damit man sich Namen statt Nummern merken kann, übersetzt
-> das ___ zwischen beiden. Wer fragt, ist der Client, wer antwortet, ist der
-> ___ — dieses Muster heißt ___.
->
-> *(10 Lücken)*
+**Bildschirme:**
+1. *Zwei Rechner an einem Switch* — Adressen aus demselben Subnetz, pingen, es
+   funktioniert
+2. *Ein drittes Gerät in einem anderen Subnetz* — pingen, es funktioniert nicht.
+   Nichts kaputt, sondern richtig: Es fehlt der Weg.
+3. *Router dazwischen, Gateway eintragen* — wieder pingen, jetzt geht es
+4. *Absichtlich kaputtmachen* — falsche Subnetzmaske, gelöschtes Gateway, zwei
+   gleiche Adressen, gezogenes Kabel. Jeder Fehler erzeugt ein anderes
+   Fehlerbild, und wer die Bilder kennt, erkennt sie wieder.
+5. *Wem gehört das Internet* — es wurde so gebaut, dass jeder mitmachen kann,
+   ohne zu fragen. Das war eine Entscheidung, keine Naturgegebenheit.
 
-### 2. Vergleiche *(Anforderungsbereich II)*
-
-> Ein Rechner antwortet auf `ping 8.8.8.8` innerhalb weniger Millisekunden,
-> kann aber keine einzige Webseite laden. Ein anderer Rechner lädt Seiten,
-> antwortet auf denselben Ping aber gar nicht. Erkläre für beide Fälle, welcher
-> Teil der Kette funktioniert und welcher nicht — und was du daraus über den
-> Unterschied zwischen einer Adresse und einem Namen lernst.
->
-> *Hinweis: Überlege bei jedem Fall, welcher Schritt aus Bildschirm 3
-> übersprungen wird.*
-
-### 3. Zum Nachdenken
-
-> Das Internet ist so gebaut, dass grundsätzlich jeder Informationen anbieten
-> und abrufen kann, ohne jemanden um Erlaubnis zu fragen. Das ist keine
-> technische Notwendigkeit, sondern eine Entscheidung, die man auch anders
-> hätte treffen können. Überlege, was sich für dich ändern würde, wenn jede
-> Webseite vorher genehmigt werden müsste — und wer wohl entscheiden würde, was
-> genehmigt wird.
+**Aufgaben:** Lückentext zur Wiederholung des Moduls · Vergleich mit
+Handlungsteil: eigenes Netz aufbauen, ein Fehlerbild herbeiführen und
+beschreiben · Offen: Was stünde auf dem Spiel, wenn jede Webseite vorher
+genehmigt werden müsste — und wer würde entscheiden?
 
 ---
 
@@ -220,7 +185,14 @@ stünde auf dem Spiel, wenn sie zurückgenommen würde?
 - **Simulation:** Filius ist für die Mittelstufe die naheliegende Wahl —
   deutschsprachig, kostenlos, ohne Anmeldung. Cisco Packet Tracer kann mehr,
   verlangt aber ein Konto.
-- **Optional laut Plan:** DHCP-Server ist als optional ausgewiesen; hier steht
-  er bewusst drin, weil er sonst als Zauberei erscheint.
-- **Was noch fehlt:** englische Fassung; ein `stats`-Block mit IPv4- gegen
-  IPv6-Adressraum wäre auf Bildschirm 3 ein guter Blickfang.
+- **Pfad 5 braucht Rechner.** Die vier davor funktionieren gelesen; dieser
+  nicht. Wer keine Simulation stellen kann, sollte ihn als Vorführung an der
+  Tafel planen statt ihn zu streichen.
+- **Was noch fehlt:** die englische Fassung; ein `stats`-Block mit IPv4- gegen
+  IPv6-Adressraum wäre in Pfad 4 ein guter Blickfang.
+
+## Quellen für die Ausarbeitung
+
+- inf-schule.de: Rechnernetze — https://www.inf-schule.de/rechnernetze
+- RFC 791 — Internet Protocol — https://www.rfc-editor.org/rfc/rfc791
+- RFC 1034 — Domain Names — https://www.rfc-editor.org/rfc/rfc1034

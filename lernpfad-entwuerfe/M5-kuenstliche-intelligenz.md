@@ -1,227 +1,191 @@
 # M5 — Künstliche Intelligenz und Maschinelles Lernen
 
-**Entwurf für einen Lernpfad** · Themenfeld Datenkompetenz · Jahrgang 7–10
+**Modulentwurf** · Fach Informatik · Themenfeld Datenkompetenz · Jahrgang 7–10
 
-```
-key      maschinen-die-raten
-title    Maschinen, die raten lernen
-summary  Warum ein Programm, das niemand Regeln beigebracht hat, trotzdem
-         Katzen erkennt — und was es dabei nicht weiß.
-icon     🧠
-accent   violet
-minutes  18
+## Die Moduldefinition
+
+```json
+{
+  "key": "m5-kuenstliche-intelligenz",
+  "title": { "de": "Künstliche Intelligenz und Maschinelles Lernen", "en": "Artificial intelligence and machine learning" },
+  "description": {
+    "de": "Warum ein Programm, dem niemand Regeln beigebracht hat, trotzdem Katzen erkennt - und was es dabei nicht weiß.",
+    "en": "Why a program nobody gave rules to still recognises cats - and what it does not know while doing so."
+  },
+  "icon": "🧠",
+  "accent": "violet",
+  "badge": "M5"
+}
 ```
 
-### Verbindliche Fachbegriffe
+## Verbindliche Fachbegriffe
 
 der/das Bias · die KI · der Layer · das maschinelle Lernen · das Neuron ·
 das neuronale Netz · die Gewichtung
 
-### Leitgedanke des Bildungsplans
+| Pfad | deckt ab |
+|---|---|
+| 1 | KI, maschinelles Lernen |
+| 2 | neuronales Netz, Neuron, Layer, Gewichtung |
+| 3 | — (Training in der Praxis) |
+| 4 | Bias |
+| 5 | — (Ethik und Verantwortung) |
+
+## Leitgedanke des Bildungsplans
 
 > Die Schülerinnen und Schüler experimentieren mit Systemen, denen künstliche
 > Intelligenz zugrunde liegt, […] betrachten Möglichkeiten und Grenzen von KI
 > und setzen sich mit ethischen Fragestellungen auseinander.
 
-Der Plan verlangt hier ausdrücklich beides: die Technik *und* die Ethik. Ein
-Pfad, der nur eines davon macht, erfüllt das Modul nicht.
+Der Plan verlangt ausdrücklich beides: die Technik *und* die Ethik. Ein Modul,
+das nur eines davon macht, erfüllt die Vorgabe nicht. Die fünf Pfade teilen sich
+deshalb auf: zwei Technik, einer Praxis, zwei Folgen.
 
 ---
 
-## Bildschirm 1 — Die Regel, die niemand aufschreiben kann
+## Die fünf Lernpfade
 
-**lead**
-Schreib eine Regel auf, an der man eine Katze erkennt. Vier Beine? Der Tisch
-auch. Fell? Ein Teppich auch. Schnurrhaare, spitze Ohren, Schwanz — und dann
-kommt eine Katze von hinten, im Dunkeln, halb verdeckt, und jede Regel fällt um.
-
-**paragraph**
-Menschen erkennen Katzen mühelos und können nicht sagen, woran. Genau das ist
-die Lücke, in die maschinelles Lernen stößt. Bei **herkömmlicher
-Programmierung** schreibt ein Mensch die Regeln auf, und der Computer führt sie
-aus. Beim **maschinellen Lernen** bekommt der Computer Beispiele und sucht sich
-die Regeln selbst.
-
-**table** — *Zwei Arten, ein Problem zu lösen*
-
-| | Herkömmliches Programm | Maschinelles Lernen |
-|---|---|---|
-| Mensch liefert | die Regeln | die Beispiele |
-| Rechner liefert | das Ergebnis | die Regeln *und* das Ergebnis |
-| Gut für | alles Genaue: rechnen, sortieren, prüfen | alles Unscharfe: erkennen, einschätzen |
-| Nachvollziehbar? | ja, Zeile für Zeile | oft nicht |
-
-**fact-callout · 🪆 · KI, maschinelles Lernen, Deep Learning**
-Drei Begriffe, die durcheinandergehen. **KI** ist der Oberbegriff für alles,
-was klug wirkt. **Maschinelles Lernen** ist ein Weg dorthin: aus Beispielen
-lernen. **Deep Learning** ist eine Sorte davon, mit vielen Schichten. Wie
-Fahrzeug, Auto, Elektroauto — jedes steckt im vorigen.
-
-**warn-callout · 🎭 · „Intelligenz" ist ein Werbewort**
-Ein System, das Katzen erkennt, weiß nicht, was eine Katze ist. Es hat kein
-Bild von der Welt, keine Absicht, kein Verständnis. Es hat Muster in Zahlen
-gefunden. Das ist erstaunlich genug — man muss es nicht mit Denken verwechseln,
-und die Werbung tut es trotzdem.
+| # | Titel | Untertitel | UE der Handreichung |
+|---|---|---|---|
+| 1 | Die Regel, die niemand aufschreiben kann | Warum manche Aufgaben kein Programm im alten Sinn zulassen | 1 |
+| 2 | Was in so einem Netz passiert | Neuron, Schicht, Gewichtung — und warum das Rechnerei ist | 2–3 |
+| 3 | Trainier dir ein Modell | Zehn Minuten, eine Webcam, und der lehrreichste Fehler | 4 |
+| 4 | Der Spiegel, nicht der Richter | Bias, Halluzinationen und andere Grenzen | 5 |
+| 5 | Wer entscheidet, wenn niemand entscheidet | Verantwortung, Urheberschaft, Demokratie | 6–7 |
 
 ---
 
-## Bildschirm 2 — Was in so einem Netz passiert
+### Pfad 1 — Die Regel, die niemand aufschreiben kann
 
-**lead**
-Ein **neuronales Netz** klingt nach Gehirn und ist Rechnerei. Ein **Neuron**
-ist eine Stelle, die Zahlen entgegennimmt, jede mit einer **Gewichtung**
-multipliziert, alles addiert und weitergibt, wenn das Ergebnis groß genug ist.
-Mehr nicht.
+**Kernbild:** Schreib eine Regel auf, an der man eine Katze erkennt. Vier Beine?
+Der Tisch auch. Fell? Ein Teppich auch. Und dann kommt eine Katze von hinten, im
+Dunkeln, halb verdeckt, und jede Regel fällt um.
 
-**paragraph**
-Viele solcher Neuronen nebeneinander bilden einen **Layer**, eine Schicht.
-Mehrere Schichten hintereinander ergeben das Netz: Vorn kommen die Zahlen des
-Bildes hinein, hinten kommt eine Einschätzung heraus.
+**Bildschirme:**
+1. *Die Lücke* — Menschen erkennen Katzen mühelos und können nicht sagen, woran
+2. *Zwei Arten, ein Problem zu lösen* (Tabelle) — herkömmliches Programm: Mensch
+   liefert die Regeln. Maschinelles Lernen: Mensch liefert die Beispiele,
+   Rechner sucht sich die Regeln.
+3. *KI, maschinelles Lernen, Deep Learning* — drei Begriffe, die
+   durcheinandergehen. Wie Fahrzeug, Auto, Elektroauto: jedes steckt im vorigen.
+4. *„Intelligenz" ist ein Werbewort* — ein System, das Katzen erkennt, weiß
+   nicht, was eine Katze ist. Kein Bild von der Welt, keine Absicht, kein
+   Verständnis. Es hat Muster in Zahlen gefunden — erstaunlich genug.
 
-**steps**
-1. **Eingabe.** Ein Bild ist eine lange Liste von Zahlen — Helligkeitswerte der
-   Pixel. Nichts weiter.
-2. **Gewichten.** Jede Verbindung hat eine Zahl, die sagt, wie wichtig sie ist.
-   Diese Zahlen sind das eigentliche „Wissen" des Netzes.
-3. **Weitergeben.** Jede Schicht fasst zusammen, was die vorige gefunden hat:
-   erst Kanten, dann Formen, dann Teile, dann das Ganze.
-4. **Ausgabe.** Am Ende steht kein Ja oder Nein, sondern eine Wahrscheinlichkeit:
-   „zu 94 % Katze".
-5. **Korrigieren.** War es falsch, werden alle Gewichtungen ein winziges Stück
-   verschoben. Millionenfach wiederholt heißt das: trainieren.
-
-**try-callout · 🎨 · Selbst ein Modell trainieren, in zehn Minuten**
-Mit Teachable Machine (Google, ohne Anmeldung) kann eine Klasse in einer
-Unterrichtsstunde ein eigenes Bilderkennungsmodell trainieren — Webcam an,
-zwei Kategorien, dreißig Bilder je Kategorie. Der lehrreichste Moment kommt
-danach: wenn jemand ein Bild zeigt, das zu keiner Kategorie gehört, und das
-Modell sich trotzdem sicher ist.
-
-**fact-callout · 🏷️ · Mit und ohne Etiketten**
-Beim **überwachten Lernen** steht bei jedem Beispiel dabei, was es ist —
-„das ist eine Katze". Beim **unüberwachten Lernen** nicht: Das System sucht
-selbst nach Gruppen, die sich ähneln, und weiß nicht, wie sie heißen.
+**Aufgaben:** Lückentext zu KI, maschinelles Lernen, Deep Learning · Vergleich:
+zwei Aufgaben — eine, für die ein herkömmliches Programm besser ist, und eine
+für maschinelles Lernen; jeweils begründet · Offen: Was kannst du, ohne erklären
+zu können, wie du es machst?
 
 ---
 
-## Bildschirm 3 — Wo es schiefgeht, und warum
+### Pfad 2 — Was in so einem Netz passiert
 
-**lead**
-Ein Modell kann nur lernen, was in seinen Beispielen steckt. Das klingt
-harmlos und ist die Ursache fast aller Probleme mit KI.
+**Kernbild:** Ein neuronales Netz klingt nach Gehirn und ist Rechnerei. Ein
+Neuron nimmt Zahlen entgegen, multipliziert jede mit einer Gewichtung, addiert
+alles und gibt weiter, wenn das Ergebnis groß genug ist. Mehr nicht.
 
-**paragraph**
-Wenn die Trainingsbilder überwiegend helle Gesichter zeigen, wird das Modell
-bei dunklen schlechter. Wenn in den Bewerbungen der letzten zehn Jahre
-überwiegend Männer eingestellt wurden, lernt ein Modell, Männer zu bevorzugen —
-nicht weil jemand das so wollte, sondern weil es genau das ist, was in den
-Daten steht. Diese eingebaute Schieflage heißt **Bias**.
+**Bildschirme:**
+1. *Ein Neuron, von Hand gerechnet* — drei Eingaben, drei Gewichtungen, eine
+   Schwelle. Mit echten Zahlen, damit „Gewichtung" nicht abstrakt bleibt.
+2. *Schichten* — viele Neuronen nebeneinander bilden einen Layer; vorn kommen
+   die Zahlen des Bildes hinein, hinten eine Einschätzung heraus
+3. *Was die Schichten finden* — erst Kanten, dann Formen, dann Teile, dann das
+   Ganze
+4. *Trainieren* — am Ende steht kein Ja oder Nein, sondern „zu 94 % Katze". War
+   es falsch, werden alle Gewichtungen ein winziges Stück verschoben.
+   Millionenfach wiederholt heißt das: trainieren.
+5. *Mit und ohne Etiketten* — überwachtes Lernen („das ist eine Katze") gegen
+   unüberwachtes, das selbst nach Gruppen sucht und nicht weiß, wie sie heißen
 
-**warn-callout · 🪞 · Der Spiegel, nicht der Richter**
-Ein Modell ist kein neutrales Urteil, sondern ein sehr genauer Spiegel seiner
-Trainingsdaten — samt aller Verzerrungen darin. Wer sagt „die KI hat
-entschieden", verschiebt die Verantwortung auf etwas, das keine tragen kann.
-Entschieden haben die, die die Daten ausgewählt und das System eingesetzt haben.
-
-**list**
-- **Falsche Trainingsdaten** — was fehlt, kann nicht gelernt werden
-- **Deepfakes** — Bilder, Stimmen und Videos, die es nie gab
-- **Empfehlungssysteme** — sie zeigen, was lange fesselt, nicht was stimmt
-- **Rückkopplung** — das Modell beeinflusst die Welt, aus der es lernt, und
-  verstärkt sich selbst
-- **Zweckentfremdung** — ein Modell für Gesichtserkennung am Flughafen lässt
-  sich auch auf einer Demonstration einsetzen
-
-**paragraph**
-Und die Grenze, die im Alltag am meisten zählt: Ein Sprachmodell antwortet
-flüssig auf jede Frage — auch auf die, deren Antwort es nicht kennt. Es
-formuliert dann genauso überzeugend etwas Falsches. Sicher klingen und richtig
-liegen sind zwei verschiedene Dinge, und man sieht ihnen den Unterschied nicht
-an.
+**Aufgaben:** Lückentext zu neuronales Netz, Neuron, Layer, Gewichtung ·
+Vergleich: ein Neuron mit veränderten Gewichtungen durchrechnen — welche
+Eingabe entscheidet? · Offen: Die Gewichtungen sind das ganze „Wissen" des
+Netzes. Was heißt das für die Frage, ob man ein Modell besitzen kann?
 
 ---
 
-## Bildschirm 4 — Wer entscheidet, wenn niemand entscheidet
+### Pfad 3 — Trainier dir ein Modell
 
-**lead**
-Die technischen Fragen sind die leichteren. Schwieriger wird es, sobald ein
-System etwas tut, das Folgen für Menschen hat.
+**Kernbild:** Webcam an, zwei Kategorien, dreißig Bilder je Kategorie. Der
+lehrreichste Moment kommt danach: wenn jemand ein Bild zeigt, das zu keiner
+Kategorie gehört, und das Modell sich trotzdem sicher ist.
 
-**paragraph**
-Ein selbstfahrendes Auto muss ausweichen und hat zwei schlechte Möglichkeiten.
-Wer legt vorher fest, welche es wählt? Der Programmierer? Die Herstellerfirma?
-Der Gesetzgeber? Der Käufer? Anders als beim menschlichen Fahrer wird hier
-Monate vorher am Schreibtisch entschieden — und für alle Fälle gleichzeitig.
+**Bildschirme:**
+1. *In zehn Minuten zum eigenen Modell* — Teachable Machine, ohne Anmeldung
+2. *Was gute Beispiele ausmacht* — Hintergrund, Licht, Winkel; und was passiert,
+   wenn alle Bilder einer Klasse vor derselben Wand aufgenommen wurden
+3. *Der Test, der wehtut* — etwas zeigen, das in keine Kategorie passt
+4. *Was das Modell gelernt hat, und was du gelernt hast* — meistens nicht
+   dasselbe
 
-**list**
-- **Wem gehört das Ergebnis?** Ein Bild im Stil einer lebenden Künstlerin,
-  erzeugt von einem Modell, das mit ihren Werken trainiert wurde.
-- **Wer haftet?** Wenn eine medizinische Software etwas übersieht.
-- **Wer prüft?** Wenn eine Bewerbung aussortiert wird und niemand die Regel
-  benennen kann.
-- **Was heißt Demokratie**, wenn sich Stimmen, Videos und Zeugen fälschen
-  lassen?
+**Aufgaben:** Lückentext zu Trainingsdaten, Kategorie, Sicherheit · Vergleich
+mit Handlungsteil: dasselbe Modell zweimal trainieren, einmal mit einseitigen
+und einmal mit vielfältigen Bildern; die Unterschiede beschreiben · Offen: Wie
+viele Beispiele braucht ein Mensch, um eine neue Sache zu erkennen?
 
-**tip-callout · 🤖 · Rede ich gerade mit einem Menschen?**
-Alan Turing hat 1950 vorgeschlagen, genau das zum Maßstab zu machen: Wenn ein
-Mensch im Gespräch nicht mehr unterscheiden kann, ob am anderen Ende eine
-Maschine sitzt — reicht das? Die Frage ist heute keine Gedankenspielerei mehr.
-Überlegt in der Klasse, welche Fragen ihr stellen würdet, um es herauszufinden.
-
-**paragraph**
-Zum Schluss die Seite, die auch dazugehört: Modelle finden Tumore auf
-Aufnahmen, die Menschen übersehen. Sie übersetzen zwischen Sprachen, für die es
-kaum Dolmetscher gibt. Sie übernehmen eintönige Arbeit. Die Frage ist nicht, ob
-man das will, sondern wer entscheidet, wofür es eingesetzt wird — und wer
-nachsehen darf, ob es funktioniert.
-
-**sources**
-- Teachable Machine (Google) — https://teachablemachine.withgoogle.com
-- Alan Turing, *Computing Machinery and Intelligence* (1950) —
-  https://academic.oup.com/mind/article/LIX/236/433/986238
-- Bildungsplan Informatik Sek I, Hamburg —
-  https://www.hamburg.de/resource/blob/798514/ad3c2fdfb3a32b9545a271dfceae5772/informatik-data.pdf
+**Hinweis:** Der Plan verlangt ausdrücklich, Modelle zu *trainieren* und
+trainierte Modelle *anzuwenden* — nicht nur darüber zu reden. Dieser Pfad ist
+die Erfüllung dieser Vorgabe und sollte nicht gestrichen werden.
 
 ---
 
-## Die drei Aufgaben
+### Pfad 4 — Der Spiegel, nicht der Richter
 
-### 1. Lückentext
+**Kernbild:** Ein Modell kann nur lernen, was in seinen Beispielen steckt. Das
+klingt harmlos und ist die Ursache fast aller Probleme mit KI.
 
-> Bei herkömmlicher Programmierung schreibt ein Mensch die Regeln auf. Beim
-> ___ bekommt der Rechner stattdessen Beispiele und sucht sich die Regeln
-> selbst. Der Oberbegriff für all das ist ___. Aufgebaut ist ein solches System
-> als ___: Die kleinste Einheit heißt ___, viele davon nebeneinander bilden
-> eine Schicht, auch ___ genannt. Wie stark eine Verbindung zählt, sagt ihre
-> ___; beim Trainieren werden genau diese Zahlen immer wieder ein wenig
-> verschoben. Steht bei jedem Beispiel dabei, was es zeigt, spricht man von
-> ___ Lernen, sonst von ___ Lernen. Sind die Trainingsdaten einseitig, lernt
-> das Modell diese Einseitigkeit mit — diese Schieflage heißt ___.
->
-> *(9 Lücken)*
+**Bildschirme:**
+1. *Wie Bias entsteht* — sind die Trainingsbilder überwiegend hell, wird das
+   Modell bei dunklen Gesichtern schlechter. Wurden in zehn Jahren Bewerbungen
+   überwiegend Männer eingestellt, lernt ein Modell, Männer zu bevorzugen — nicht
+   weil jemand das wollte, sondern weil genau das in den Daten steht.
+2. *Wer entschieden hat* — wer sagt „die KI hat entschieden", verschiebt die
+   Verantwortung auf etwas, das keine tragen kann
+3. *Fünf Arten, wie es schiefgeht* — fehlende Trainingsdaten, Deepfakes,
+   Empfehlungssysteme (sie zeigen, was lange fesselt, nicht was stimmt),
+   Rückkopplung, Zweckentfremdung
+4. *Sicher klingen und richtig liegen* — ein Sprachmodell antwortet flüssig auch
+   auf Fragen, deren Antwort es nicht kennt. Man sieht dem Text den Unterschied
+   nicht an.
 
-### 2. Vergleiche *(Anforderungsbereich II)*
+**Aufgaben:** Lückentext zu Bias, Trainingsdaten, Rückkopplung · Vergleich: ein
+Taschenrechner ist bei `7 × 8` zuverlässiger als jeder Mensch; ein Sprachmodell
+ist bei der Frage, wie viele Buchstaben in einem Wort stehen, unzuverlässiger
+als jedes Kind. Woran liegt der Unterschied — und welche Regel folgt daraus? ·
+Offen: Wann hast du zuletzt etwas geglaubt, weil es überzeugend formuliert war?
 
-> Ein Taschenrechner ist bei `7 × 8` zuverlässiger als jeder Mensch. Ein
-> Sprachmodell ist bei der Frage, wie viele Buchstaben in einem Wort stehen,
-> unzuverlässiger als jedes Kind. Beides sind Computer. Erkläre, woran dieser
-> Unterschied liegt, und leite daraus eine Regel ab, bei welcher Art von
-> Aufgaben man dem Ergebnis einer KI trauen kann und bei welcher man
-> nachrechnen sollte.
->
-> *Hinweis: Denk daran, wer die Regeln aufgestellt hat — und ob am Ende ein
-> berechnetes Ergebnis steht oder eine Wahrscheinlichkeit.*
+---
 
-### 3. Zum Nachdenken
+### Pfad 5 — Wer entscheidet, wenn niemand entscheidet
 
-> Ein Modell lernt aus dem, was war. Wenn in den Daten der letzten zwanzig
-> Jahre bestimmte Menschen seltener eingestellt, seltener befördert oder
-> häufiger kontrolliert wurden, dann steht genau das in den Beispielen — und
-> ein Modell, das daraus lernt, macht aus der Vergangenheit eine Vorhersage für
-> die Zukunft. Überlege, was das für jemanden bedeutet, der von so einer
-> Vorhersage betroffen ist, obwohl er persönlich nie etwas getan hat. Und
-> zweitens: Wen würdest du fragen wollen, warum die Entscheidung so ausgefallen
-> ist — wenn niemand die Regel benennen kann?
+**Kernbild:** Die technischen Fragen sind die leichteren. Schwieriger wird es,
+sobald ein System etwas tut, das Folgen für Menschen hat.
+
+**Bildschirme:**
+1. *Monate vorher am Schreibtisch* — ein selbstfahrendes Auto muss ausweichen
+   und hat zwei schlechte Möglichkeiten. Wer legt vorher fest, welche es wählt —
+   und für alle Fälle gleichzeitig?
+2. *Vier offene Fragen* — Wem gehört ein Bild im Stil einer lebenden Künstlerin?
+   Wer haftet, wenn medizinische Software etwas übersieht? Wer prüft, wenn eine
+   Bewerbung aussortiert wird und niemand die Regel benennen kann? Was heißt
+   Demokratie, wenn sich Stimmen und Videos fälschen lassen?
+3. *Rede ich gerade mit einem Menschen?* — Turings Vorschlag von 1950, heute
+   keine Gedankenspielerei mehr. Welche Fragen würdet ihr stellen?
+4. *Die andere Seite* — Modelle finden Tumore, die Menschen übersehen; sie
+   übersetzen zwischen Sprachen, für die es kaum Dolmetscher gibt; sie übernehmen
+   eintönige Arbeit. Die Frage ist nicht, ob man das will, sondern wer
+   entscheidet, wofür es eingesetzt wird — und wer nachsehen darf, ob es
+   funktioniert.
+
+**Aufgaben:** Lückentext zur Wiederholung des Moduls · Vergleich: zwei Einsätze
+desselben Modells, einer den du befürwortest und einer den du ablehnst — was
+genau macht den Unterschied? · Offen: Ein Modell lernt aus dem, was war. Wurden
+bestimmte Menschen seltener eingestellt oder häufiger kontrolliert, macht ein
+Modell daraus eine Vorhersage für die Zukunft. Was bedeutet das für jemanden,
+der davon betroffen ist, obwohl er persönlich nie etwas getan hat? Und wen
+würdest du fragen wollen, warum die Entscheidung so ausfiel — wenn niemand die
+Regel benennen kann?
 
 ---
 
@@ -229,13 +193,19 @@ nachsehen darf, ob es funktioniert.
 
 - **Beide Hälften sind Pflicht.** Der Plan verlangt Technik *und* Ethik. Wenn
   gekürzt werden muss, dann innerhalb beider Teile, nicht einer davon.
-- **Optional laut Plan:** verstärkendes Lernen. Passt gut als Ausblick am Ende
-  von Bildschirm 2, ist aber nicht nötig.
-- **Praktischer Teil:** Der Plan verlangt ausdrücklich, Modelle zu *trainieren*
-  und trainierte Modelle *anzuwenden* — nicht nur darüber zu reden. Teachable
-  Machine erfüllt beides in einer Doppelstunde.
-- **Aktualität:** Bildschirm 3 und 4 veralten schneller als der Rest. Die
-  Beispiele sollten mindestens einmal im Schuljahr durchgesehen werden.
-- **Was noch fehlt:** englische Fassung; und auf Bildschirm 2 wäre eine
-  Rechnung mit echten Zahlen gut — etwa ein Neuron mit drei Eingaben von Hand
-  durchgerechnet, damit „Gewichtung" nicht abstrakt bleibt.
+- **Optional laut Plan:** verstärkendes Lernen. Passt als Ausblick am Ende von
+  Pfad 2, ist aber nicht nötig.
+- **Aktualität:** Die Pfade 4 und 5 veralten schneller als der Rest. Ihre
+  Beispiele sollten mindestens einmal im Schuljahr durchgesehen werden — das ist
+  auch der Grund, dieses Modul zuletzt umzusetzen.
+- **Was noch fehlt:** die englische Fassung; und für Pfad 2 die
+  Handrechnung eines Neurons mit konkreten Zahlen, damit die Gewichtung nicht
+  abstrakt bleibt.
+
+## Quellen für die Ausarbeitung
+
+- Teachable Machine (Google) — https://teachablemachine.withgoogle.com
+- Alan Turing, *Computing Machinery and Intelligence* (1950) —
+  https://academic.oup.com/mind/article/LIX/236/433/986238
+- Bildungsplan Informatik Sek I, Hamburg —
+  https://www.hamburg.de/resource/blob/798514/ad3c2fdfb3a32b9545a271dfceae5772/informatik-data.pdf

@@ -1,218 +1,235 @@
 # M3 — Textbasierte Programmierung
 
-**Entwurf für einen Lernpfad** · Themenfeld Softwareentwicklung · Jahrgang 7–10
+**Modulentwurf** · Fach Informatik · Themenfeld Softwareentwicklung · Jahrgang 7–10
 
-```
-key      vom-block-zum-text
-title    Vom Block zum Text
-summary  Warum man dieselben Bausteine noch einmal lernt — diesmal getippt,
-         und warum sich das lohnt.
-icon     🐍
-accent   indigo
-minutes  18
+## Die Moduldefinition
+
+```json
+{
+  "key": "m3-textbasierte-programmierung",
+  "title": { "de": "Textbasierte Programmierung", "en": "Text-based programming" },
+  "description": {
+    "de": "Dieselben Bausteine noch einmal - diesmal getippt. Und dann angewendet auf Aufgaben, die ohne Programm mühsam wären.",
+    "en": "The same building blocks again - typed this time. And then applied to tasks that would be tedious without a program."
+  },
+  "icon": "🐍",
+  "accent": "indigo",
+  "badge": "M3"
+}
 ```
 
-### Verbindliche Fachbegriffe
+## Verbindliche Fachbegriffe
 
 die bedingte Anweisung · der Datentyp · die Funktion · die Schleife ·
 die Variable · die Verzweigung · die Wertzuweisung · die Wiederholung
 
-### Leitgedanke des Bildungsplans
+| Pfad | deckt ab |
+|---|---|
+| 2 | Variable, Wertzuweisung, Datentyp |
+| 3 | Schleife, Wiederholung |
+| 4 | bedingte Anweisung, Verzweigung |
+| 5 | Funktion |
 
-> Die Schülerinnen und Schüler lernen die elementaren Grundlagen einer
-> aktuellen Programmiersprache, beispielsweise von Python. […] Bei der
-> Vermittlung wird eine starke Orientierung an konkreten Anwendungskontexten
-> angestrebt — **und kein reiner Programmierkurs.**
+## Leitgedanke des Bildungsplans
 
-Der letzte Halbsatz steht so im Plan und ist die eigentliche Vorgabe: Dieser
-Pfad darf keine Syntaxsammlung werden. Jeder Bildschirm braucht ein Problem,
-das ohne Programm mühsam wäre.
+> Die Schülerinnen und Schüler lernen die elementaren Grundlagen einer aktuellen
+> Programmiersprache, beispielsweise von Python. […] Bei der Vermittlung wird
+> eine starke Orientierung an konkreten Anwendungskontexten angestrebt — **und
+> kein reiner Programmierkurs.**
+
+Der letzte Halbsatz steht so im Plan und ist die eigentliche Vorgabe. Deshalb
+sind von sieben Pfaden zwei reine Anwendungspfade (6 und 7) — und Pfad 1 stellt
+die Frage, warum man das alles überhaupt noch einmal lernt.
+
+**Verhältnis zu M1:** Variablen, Schleifen und Verzweigungen kommen hier zum
+zweiten Mal vor. Das ist im Bildungsplan so angelegt; M3 nennt M1 ausdrücklich
+als fachinternen Bezug. M1 erklärt die Konzepte, M3 setzt sie voraus und macht
+die Wiederholung selbst zum Thema.
 
 ---
 
-## Bildschirm 1 — Dasselbe noch einmal, und warum
+## Die sieben Lernpfade
 
-**lead**
-Du kannst Variablen, Schleifen und Verzweigungen schon — aus Scratch. Und jetzt
+| # | Titel | Untertitel | UE der Handreichung |
+|---|---|---|---|
+| 1 | Dasselbe noch einmal, und warum | Was Text kann, was Blöcke nicht können | 1 |
+| 2 | Werte, Namen und Typen | Warum `input()` immer Text liefert | 2 |
+| 3 | Wiederholen in Text | `for`, `while` und die Einrückung | 3 |
+| 4 | Entscheiden in Text | `if`, `elif`, `else` und der Unterschied zwischen = und == | 4 |
+| 5 | Eigene Bausteine | Funktionen, Parameter und fertige Bibliotheken | 5 |
+| 6 | Erst denken, dann tippen | Algorithmen, Sonderfälle und Fehlermeldungen lesen | 6 |
+| 7 | Wofür man es dann benutzt | Ein Programm als Werkzeug in Physik, Mathe, Alltag | 7–8 |
+
+---
+
+### Pfad 1 — Dasselbe noch einmal, und warum
+
+**Kernbild:** Du kannst Variablen, Schleifen und Verzweigungen schon. Und jetzt
 soll das alles noch einmal kommen, diesmal getippt. Die Frage liegt auf der
 Hand: Wozu?
 
-**paragraph**
-Weil Blöcke irgendwann im Weg sind. Ein Programm mit dreißig Zeilen ist in
-Scratch ein Turm, den man scrollen muss; als Text passt es auf einen
-Bildschirm. Man kann Text durchsuchen, vergleichen, kopieren, per Mail
-verschicken und in einer Suchmaschine nachschlagen. Vor allem aber: Alles, was
-Software auf der Welt antreibt, ist Text.
+**Bildschirme:**
+1. *Wenn Blöcke im Weg sind* — dreißig Zeilen sind in Scratch ein Turm zum
+   Scrollen; als Text passen sie auf einen Bildschirm
+2. *Was man mit Text machen kann* — durchsuchen, vergleichen, kopieren,
+   verschicken, nachschlagen. Und: Alles, was Software auf der Welt antreibt,
+   ist Text.
+3. *Dasselbe Programm, zwei Schreibweisen* (Tabelle) — `setze punkte auf 0` /
+   `punkte = 0`, `wiederhole 10 mal` / `for i in range(10):`, und so weiter
+4. *Einrückung ist keine Kosmetik* — was in Scratch sichtbar ineinandersteckt,
+   drückt Python durch Leerzeichen am Zeilenanfang aus, und zwar verbindlich
 
-**table** — *Dasselbe Programm, zwei Schreibweisen*
-
-| Was passieren soll | Scratch | Python |
-|---|---|---|
-| merken | `setze punkte auf 0` | `punkte = 0` |
-| wiederholen | `wiederhole 10 mal` | `for i in range(10):` |
-| entscheiden | `falls punkte > 5 dann` | `if punkte > 5:` |
-| ausgeben | `sage "Hallo"` | `print("Hallo")` |
-
-**fact-callout · 🎯 · Du lernst nichts Neues, nur eine neue Schreibweise**
-Das ist die gute Nachricht: Die Konzepte sind dieselben. Was neu dazukommt, ist
-die Genauigkeit — ein fehlender Doppelpunkt, und nichts läuft. Dafür bekommst
-du eine Fehlermeldung, die meistens die Zeile nennt.
-
-**warn-callout · 📏 · Einrückung ist keine Kosmetik**
-In Python bestimmen Leerzeichen am Zeilenanfang, was noch zur Schleife gehört
-und was nicht. In anderen Sprachen machen das Klammern. Was in Scratch
-sichtbar ineinandersteckt, wird hier durch Einrücken ausgedrückt — und ist
-genauso verbindlich.
+**Aufgaben:** Lückentext zur Gegenüberstellung · Vergleich: eine Aufgabe, für
+die Blöcke besser sind, und eine, bei der Text überlegen ist — begründet mit
+einer Eigenschaft der Darstellung, nicht mit Gewohnheit · Offen: Was hat dich
+beim ersten getippten Programm am meisten geärgert?
 
 ---
 
-## Bildschirm 2 — Erst denken, dann tippen
+### Pfad 2 — Werte, Namen und Typen
 
-**lead**
-Bevor man ein Programm schreibt, beschreibt man, was es tun soll — in normalen
-Sätzen. Das klingt nach unnötigem Umweg und spart die meiste Zeit.
+**Kernbild:** `input()` liefert immer Text. Auch dann, wenn eine Zahl eingetippt
+wurde. Dieser eine Satz erklärt die Hälfte aller Fehler am Anfang.
 
-**paragraph**
-Ein **Algorithmus** ist eine Folge von Schritten, die zu einem Ergebnis führt.
-Kochrezepte sind Algorithmen, Wegbeschreibungen auch. Was einen guten Algorithmus
-ausmacht: Jeder Schritt ist eindeutig, es ist klar, wann er fertig ist, und er
-funktioniert für alle Fälle — nicht nur den, an den man zuerst gedacht hat.
+**Bildschirme:**
+1. *Zuweisen* — `punkte = 0`, und warum das kein Gleichheitszeichen im
+   mathematischen Sinn ist
+2. *Drei Typen* — `int`, `str`, `bool` (Tabelle mit je einem typischen Fehler)
+3. *Der Klassiker* — `"3" + "3"` ergibt `"33"`; `int(input(...))` als Lösung
+4. *Ausgeben* — `print()` mit mehreren Werten, f-Strings als bequemere Form
 
-**steps**
-1. **In Sätzen aufschreiben**, was passieren soll. Umgangssprachlich.
-2. **Die Reihenfolge prüfen.** Was muss vorher da sein?
-3. **Die Sonderfälle suchen.** Was, wenn nichts eingegeben wird? Wenn die Zahl
-   null ist? Wenn es negativ wird?
-4. **Als Struktogramm oder Ablaufplan zeichnen**, wenn es verzweigt.
-5. **Erst dann tippen.**
-
-**try-callout · 🎲 · Das Zahlenratespiel als Beispiel**
-„Der Computer denkt sich eine Zahl zwischen 1 und 100, du rätst, er sagt höher
-oder tiefer." Schreib den Ablauf erst in Sätzen auf. Du wirst merken: Die
-schwierige Stelle ist nicht das Raten, sondern die Frage, wann das Programm
-aufhört — und was passiert, wenn jemand statt einer Zahl seinen Namen eintippt.
+**Aufgaben:** Lückentext zu Variable, Wertzuweisung, Datentyp · Vergleich: Zwei
+Programme unterscheiden sich in einer einzigen Zeile und liefern völlig
+verschiedene Ergebnisse — welche, und warum? · Offen: Warum ist es sinnvoll,
+dass der Computer Text und Zahlen nicht selbst auseinanderhält?
 
 ---
 
-## Bildschirm 3 — Die Bausteine in Python
+### Pfad 3 — Wiederholen in Text
 
-**lead**
-Fünf Dinge reichen für erstaunlich viel: Werte merken, wiederholen,
-entscheiden, ein- und ausgeben, und eigene Bausteine bauen.
+**Kernbild:** Zwei Schleifen, zwei Fragen: „wie oft?" und „solange was?" —
+dieselbe Unterscheidung wie in M1, aber jetzt sichtbar an der Einrückung.
 
-**table** — *Datentypen und was schiefgeht*
+**Bildschirme:**
+1. *`for i in range(10)`* — die Zählschleife, und was `i` eigentlich ist
+2. *`while`* — solange eine Bedingung gilt; die Endlosschleife und wie man sie
+   abbricht
+3. *Was noch dazugehört* — der eingerückte Block, und was passiert, wenn eine
+   Zeile aus Versehen nicht eingerückt ist
+4. *Schleifen mit Sinn* — die ersten zwanzig Quadratzahlen, eine Zeitmessung,
+   ein Countdown
 
-| Typ | Beispiel | Häufiger Fehler |
-|---|---|---|
-| `int` | `42` | `input()` liefert Text, keine Zahl — `int(...)` fehlt |
-| `str` | `"Mia"` | `"3" + "3"` ergibt `"33"`, nicht `6` |
-| `bool` | `True` | `=` zuweisen gegen `==` vergleichen |
-
-**paragraph**
-Die **Funktion** ist das Einzige, was in Scratch oft fehlt und hier wirklich
-neu ist: ein eigener Baustein mit Namen, den man beliebig oft benutzen kann.
-Wer dreimal dasselbe schreibt, sollte eine Funktion daraus machen — dann steht
-die Sache an *einer* Stelle, und Ändern heißt einmal ändern.
-
-**paragraph**
-Dazu kommen fertige Bausteine, die andere geschrieben haben: `random` für
-Zufall, `math` für Wurzeln, `time` für Zeitmessung. Eine Bibliothek zu benutzen
-heißt nicht, dass man weniger kann — es heißt, dass man nicht neu erfindet, was
-es schon gibt.
-
-**warn-callout · 🔍 · Der wichtigste Satz zum Fehlersuchen**
-Lies die Fehlermeldung. Wirklich lesen, nicht wegklicken. Sie nennt die Zeile
-und die Art des Fehlers. `NameError` heißt: Diesen Namen kenne ich nicht —
-meistens ein Tippfehler. `TypeError` heißt: Diese beiden Dinge passen nicht
-zusammen — meistens Text gegen Zahl. Zwei Meldungen, die man erkennt, sparen
-Stunden.
+**Aufgaben:** Lückentext zu Schleife, Wiederholung, Bedingung · Vergleich:
+Dasselbe Ergebnis einmal mit `for` und einmal mit `while` — welche Fassung ist
+klarer, und woran liegt das? · Offen: Wo im Alltag zählst du mit, ohne es zu
+merken?
 
 ---
 
-## Bildschirm 4 — Wofür man es dann benutzt
+### Pfad 4 — Entscheiden in Text
 
-**lead**
-Hier entscheidet sich, ob es ein Programmierkurs war oder Informatikunterricht.
-Ein Programm ist ein Werkzeug — und ein Werkzeug zeigt seinen Wert an einer
-echten Aufgabe.
+**Kernbild:** `=` legt hinein, `==` vergleicht. Der berühmteste Tippfehler der
+Informatik, und in Python bekommt man dafür sogar eine gute Fehlermeldung.
 
-**list**
-- **Physik:** Eine Messreihe auswerten. Fünfzig Werte mitteln, das Maximum
-  finden, die Abweichung ausrechnen — von Hand eine Stunde, als Programm drei
-  Zeilen und für jede weitere Messreihe wiederverwendbar.
-- **Mathematik:** Eine Vermutung prüfen. Gilt das für alle Zahlen bis 10 000?
-  Ein Beweis ist das nicht, aber man sieht schnell, ob es sich lohnt, einen zu
-  suchen.
-- **Sprachen:** Zählen, welche Wörter in einem Text am häufigsten vorkommen.
-- **Alltag:** Aus hundert Dateien die umbenennen, die ein bestimmtes Datum
-  tragen.
+**Bildschirme:**
+1. *`if` allein* — die bedingte Anweisung
+2. *`if … else`* — die Verzweigung: genau ein Weg wird gegangen
+3. *`elif`* — mehr als zwei Fälle, und warum die Reihenfolge zählt
+4. *Verknüpfen* — `and`, `or`, `not`, und wann Klammern helfen
 
-**tip-callout · ♻️ · Zwei Regeln, die immer helfen**
-Erstens: kleine Schritte. Schreib fünf Zeilen, lass sie laufen, dann die
-nächsten fünf. Zweitens: Wenn du dreimal dasselbe tippst, mach eine Funktion
-daraus.
-
-**paragraph**
-Und der Gedanke, der über das Fach hinausgeht: Software steckt inzwischen in
-fast allem. Wer ungefähr versteht, wie Programme entscheiden, kann fragen,
-warum eine App etwas anzeigt oder eine Bewerbung aussortiert wird. Wer es nicht
-versteht, muss glauben, was die Maschine sagt.
-
-**sources**
-- Python-Dokumentation, Einstieg — https://docs.python.org/3/tutorial/
-- inf-schule.de: Imperative Programmierung (Python) — https://www.inf-schule.de/imperative-programmierung
-- Bildungsplan Informatik Sek I, Hamburg —
-  https://www.hamburg.de/resource/blob/798514/ad3c2fdfb3a32b9545a271dfceae5772/informatik-data.pdf
+**Aufgaben:** Lückentext zu bedingte Anweisung, Verzweigung · Vergleich: eine
+`elif`-Kette, bei der zwei Fälle vertauscht sind — was ändert sich am Ergebnis?
+· Offen: Eine Regel, die sich schlecht in `if` fassen lässt — welche, und warum?
 
 ---
 
-## Die drei Aufgaben
+### Pfad 5 — Eigene Bausteine
 
-### 1. Lückentext
+**Kernbild:** Wer dreimal dasselbe schreibt, sollte eine Funktion daraus machen.
+Dann steht die Sache an *einer* Stelle, und Ändern heißt einmal ändern.
 
-> Eine Folge eindeutiger Schritte, die zu einem Ergebnis führt, heißt ___.
-> Bevor man tippt, beschreibt man ihn in Sätzen oder zeichnet ihn als
-> Struktogramm. Beim Programmieren merkt sich eine ___ einen Wert; ihn
-> hineinzuschreiben ist eine ___. Welche Art von Wert es ist, sagt der ___ —
-> `int` für Ganzzahlen, `str` für Text. Soll etwas mehrfach ausgeführt werden,
-> nimmt man eine ___. Soll es nur unter einer Bedingung geschehen, nimmt man
-> eine ___; kommt ein `else` hinzu, wird daraus eine ___. Einen eigenen
-> Baustein, den man mehrfach aufrufen kann, nennt man ___. In Python bestimmt
-> die ___ am Zeilenanfang, was zu einem Block gehört.
->
-> *(9 Lücken)*
+**Bildschirme:**
+1. *`def` und der Aufruf* — ein eigener Baustein mit Namen
+2. *Parameter und Rückgabewert* — was hineingeht, was herauskommt
+3. *Fertige Bausteine* — `random` für Zufall, `math` für Wurzeln, `time` für
+   Zeitmessung. Eine Bibliothek zu benutzen heißt nicht, weniger zu können; es
+   heißt, nicht neu zu erfinden, was es schon gibt.
+4. *Ein Programm aus Funktionen* — dasselbe Zahlenratespiel, einmal als
+   Textwüste und einmal in drei Funktionen zerlegt
 
-### 2. Vergleiche *(Anforderungsbereich II)*
+**Aufgaben:** Lückentext zu Funktion, Parameter, Rückgabewert · Vergleich: die
+beiden Fassungen des Ratespiels — welche würdest du in einem halben Jahr noch
+verstehen? · Offen: Wo im Alltag benutzt du etwas, ohne wissen zu wollen, wie es
+innen funktioniert?
 
-> Du hast dieselben Konzepte zweimal gelernt: als Blöcke und als Text. Nenne
-> eine Aufgabe, für die Blöcke die bessere Wahl sind, und eine, bei der Text
-> deutlich überlegen ist — und begründe beides mit einer Eigenschaft der
-> jeweiligen Darstellung, nicht mit Gewohnheit.
->
-> *Hinweis: Denk an ein Programm mit dreihundert Zeilen, und daran, dass man
-> Text durchsuchen kann.*
+---
 
-### 3. Zum Nachdenken
+### Pfad 6 — Erst denken, dann tippen
 
-> Programme entscheiden inzwischen mit: welche Videos dir vorgeschlagen werden,
-> welche Bewerbung zuerst gelesen wird, wie ein Auto in einer Gefahrensituation
-> lenkt. Geschrieben hat diese Programme jemand, der Bedingungen formuliert hat
-> — genau solche `if`-Zeilen, wie du sie jetzt schreiben kannst. Überlege, was
-> es bedeutet, dass hinter jeder automatischen Entscheidung ein Mensch steht,
-> der sie so und nicht anders aufgeschrieben hat. Ändert das etwas daran, wem
-> gegenüber man sich beschweren kann?
+**Kernbild:** Bevor man ein Programm schreibt, beschreibt man in normalen
+Sätzen, was es tun soll. Das klingt nach Umweg und spart die meiste Zeit.
+
+**Bildschirme:**
+1. *Was ein Algorithmus ist* — eine Folge eindeutiger Schritte; jeder Schritt
+   klar, das Ende klar, und er funktioniert für alle Fälle
+2. *Fünf Schritte vor dem Tippen* — in Sätzen aufschreiben, Reihenfolge prüfen,
+   Sonderfälle suchen, bei Verzweigungen zeichnen, dann erst tippen
+3. *Das Zahlenratespiel* — die schwierige Stelle ist nicht das Raten, sondern
+   wann das Programm aufhört und was passiert, wenn jemand seinen Namen eintippt
+4. *Fehlermeldungen lesen* — `NameError` heißt „diesen Namen kenne ich nicht",
+   meistens ein Tippfehler; `TypeError` heißt „diese beiden passen nicht
+   zusammen", meistens Text gegen Zahl. Zwei erkannte Meldungen sparen Stunden.
+
+**Aufgaben:** Lückentext zu Algorithmus, Sonderfall, Fehlermeldung · Vergleich:
+zwei Fehlermeldungen zu demselben Programm — welche nennt die Ursache, welche
+nur die Stelle? · Offen: Wann hast du zuletzt eine Fehlermeldung weggeklickt,
+ohne sie zu lesen?
+
+---
+
+### Pfad 7 — Wofür man es dann benutzt
+
+**Kernbild:** Hier entscheidet sich, ob es ein Programmierkurs war oder
+Informatikunterricht. Ein Werkzeug zeigt seinen Wert an einer echten Aufgabe.
+
+**Bildschirme:**
+1. *Physik* — eine Messreihe auswerten: fünfzig Werte mitteln, Maximum finden,
+   Abweichung ausrechnen. Von Hand eine Stunde, als Programm drei Zeilen und für
+   jede weitere Messreihe wiederverwendbar.
+2. *Mathematik und Sprache* — eine Vermutung für alle Zahlen bis 10 000 prüfen
+   (ein Beweis ist das nicht, aber man sieht, ob sich einer lohnt); zählen,
+   welche Wörter in einem Text am häufigsten vorkommen
+3. *Alltag* — aus hundert Dateien die umbenennen, die ein bestimmtes Datum
+   tragen
+4. *Wer die Bedingungen aufgeschrieben hat* — Software steckt in fast allem. Wer
+   versteht, wie Programme entscheiden, kann fragen, warum eine App etwas
+   anzeigt oder eine Bewerbung aussortiert.
+
+**Aufgaben:** Lückentext zur Wiederholung des Moduls · Vergleich mit
+Handlungsteil: eine eigene kleine Auswertung schreiben und begründen, warum sich
+das Programm gegenüber Handarbeit lohnt (oder eben nicht) · Offen: Ändert es
+etwas daran, wem gegenüber man sich beschweren kann, wenn hinter jeder
+automatischen Entscheidung ein Mensch steht, der sie so aufgeschrieben hat?
 
 ---
 
 ## Hinweise zur Umsetzung
 
 - **Der wichtigste Satz des Moduls** steht im Plan: „kein reiner
-  Programmierkurs". Bildschirm 4 ist deshalb kein Anhängsel, sondern der
-  Grund für die drei davor.
-- **Optional laut Plan:** Listen, Dictionaries, Arrays sowie Mock-ups. Passt
-  als fünfter Bildschirm, wenn Zeit ist.
-- **Umgebung:** Das mitgelieferte Notebook in Bud-E kann Python im Browser
-  ausführen — ohne Installation, ohne Konto. Für den Unterricht heißt das:
-  keine Einrichtungsstunde.
-- **Was noch fehlt:** englische Fassung; und für Bildschirm 3 sollte je ein
-  vollständiges kurzes Programm als Codeblock dazu, nicht nur Fragmente.
+  Programmierkurs". Pfad 7 ist deshalb kein Anhängsel, sondern der Grund für die
+  sechs davor. Wer streichen muss, streicht nicht ihn.
+- **Optional laut Plan:** Listen, Dictionaries, Arrays sowie Mock-ups. Passt als
+  achter Pfad zwischen 5 und 6, wenn Zeit ist.
+- **Umgebung:** Das mitgelieferte Notebook in Bud-E führt Python im Browser aus
+  — ohne Installation, ohne Konto. Für den Unterricht heißt das: keine
+  Einrichtungsstunde.
+- **Was noch fehlt:** die englische Fassung; und in den Pfaden 2 bis 5 sollte je
+  ein vollständiges kurzes Programm als Codeblock stehen, nicht nur Fragmente.
+
+## Quellen für die Ausarbeitung
+
+- Python-Dokumentation, Einstieg — https://docs.python.org/3/tutorial/
+- inf-schule.de: Imperative Programmierung (Python) —
+  https://www.inf-schule.de/imperative-programmierung
+- Bildungsplan Informatik Sek I, Hamburg —
+  https://www.hamburg.de/resource/blob/798514/ad3c2fdfb3a32b9545a271dfceae5772/informatik-data.pdf

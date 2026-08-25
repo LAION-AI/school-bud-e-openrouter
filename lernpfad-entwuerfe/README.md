@@ -1,40 +1,88 @@
-# Entwürfe: Lernpfade zum Hamburger Pflichtfach Informatik
+# Entwürfe: Fach Informatik, fünf Module, 29 Lernpfade
 
 Seit dem Schuljahr 2025/26 ist Informatik in Hamburg **Pflichtfach in den
 Jahrgangsstufen 7 bis 10**, mit insgesamt vier Wochenstunden. Verbindlich ist
-ein Kerncurriculum aus fünf Pflichtmodulen. Dieser Ordner enthält für jedes
-davon einen Lernpfad-Entwurf.
+ein Kerncurriculum aus fünf Pflichtmodulen.
 
-Es sind **Entwürfe**, keine fertigen Pfade: ausformuliert genug, um sie zu
-beurteilen, aber noch nicht als JSON abgelegt. Wer einen davon umsetzen will,
-findet das Format in [`../LERNPFADE.md`](../LERNPFADE.md) beschrieben.
+Dieser Ordner plant, wie daraus Inhalte für Bud-E werden — ein Fach, fünf
+Module, und darin jeweils fünf bis sieben Lernpfade.
+
+---
+
+## Die Hierarchie
+
+Bud-E ordnet Inhalte dreistufig, und diese Entwürfe folgen dem:
+
+```
+Fach          Informatik
+  Modul       M1  Blockbasierte Programmierung
+    Lernpfad  Der dümmste Mitarbeiter der Welt
+    Lernpfad  Kisten mit Namen
+    Lernpfad  Wiederholen und entscheiden
+    …
+```
+
+Ein Modul entspricht einem Pflichtmodul des Bildungsplans. Ein Lernpfad ist
+eine Sitzung von zwölf bis achtzehn Minuten Lesezeit — ungefähr das, was in
+einer Doppelstunde als Grundlage taugt.
+
+Das mitgelieferte Modul **Informatische Grundbildung** bleibt daneben bestehen.
+Es folgt keinem Pflichtmodul, sondern legt die Voraussetzungen: was ein Computer
+ist, was Bits sind, wie exponentielles Wachstum funktioniert.
+
+---
 
 ## Die fünf Pflichtmodule
 
-| Modul | Titel laut Bildungsplan | Themenfeld | Entwurf |
-|---|---|---|---|
-| M1 | Blockbasierte Programmierung | Softwareentwicklung | [M1](M1-blockbasierte-programmierung.md) |
-| M2 | Kommunikation und Rechnernetze | Sicherheit in verteilten Systemen | [M2](M2-rechnernetze.md) |
-| M3 | Textbasierte Programmierung | Softwareentwicklung | [M3](M3-textbasierte-programmierung.md) |
-| M4 | Datenbanken und Datenschutz, Teil 1 | Datenkompetenz | [M4](M4-daten-und-datenschutz.md) |
-| M5 | Künstliche Intelligenz und Maschinelles Lernen | Datenkompetenz | [M5](M5-kuenstliche-intelligenz.md) |
+| Modul | Titel laut Bildungsplan | Themenfeld | Pfade | Entwurf |
+|---|---|---|---|---|
+| M1 | Blockbasierte Programmierung | Softwareentwicklung | 6 | [M1](M1-blockbasierte-programmierung.md) |
+| M2 | Kommunikation und Rechnernetze | Sicherheit in verteilten Systemen | 5 | [M2](M2-rechnernetze.md) |
+| M3 | Textbasierte Programmierung | Softwareentwicklung | 7 | [M3](M3-textbasierte-programmierung.md) |
+| M4 | Datenbanken und Datenschutz, Teil 1 | Datenkompetenz | 6 | [M4](M4-daten-und-datenschutz.md) |
+| M5 | Künstliche Intelligenz und Maschinelles Lernen | Datenkompetenz | 5 | [M5](M5-kuenstliche-intelligenz.md) |
 
 Alle Module sind für die Jahrgangsstufen 7–10 ausgewiesen; die Reihenfolge
 innerhalb dieser Spanne legt die einzelne Schule fest.
 
-## Was die Entwürfe von den bestehenden Pfaden übernehmen
+---
 
-Vier bis fünf Bildschirme, ein Einstieg über etwas, das die Schülerin schon
-kennt, nachrechenbare Zahlen statt Behauptungen, Quellenangaben am Ende — und
-die drei Abschlussaufgaben in steigender Schwierigkeit: Lückentext, Vergleich
-(Anforderungsbereich II), offene Frage.
+## Wie ein Entwurf aufgebaut ist
 
-## Was hier zusätzlich dazukommt
+Jede Datei enthält:
 
-Jeder Entwurf nennt oben die **Fachbegriffe, die der Bildungsplan wörtlich
-verlangt**. Das ist der Unterschied zwischen einem schönen Text und einem, der
-den Plan erfüllt: Die Begriffe müssen vorkommen, und sie kommen im Lückentext
-wieder.
+1. **Die Moduldefinition** — genau die Felder, die in `_module.json` gehören.
+2. **Die verbindlichen Fachbegriffe** aus dem Bildungsplan. Sie sind auf die
+   Lernpfade verteilt, und jeder Pfad nimmt seine im Lückentext wieder auf.
+3. **Eine Übersicht der Lernpfade** mit Titel, Untertitel und Zuordnung zu den
+   Unterrichtseinheiten der Handreichung.
+4. **Je Lernpfad** eine Skizze: Bildschirme, Kernaussagen, Aufgabenideen.
+5. **Hinweise zur Umsetzung** — was noch fehlt, wo Vorsicht geboten ist.
+
+Ein Entwurf ist **kein fertiger Pfad**: ausformuliert genug, um ihn zu
+beurteilen und zu verteilen, aber noch nicht als JSON abgelegt. Das Dateiformat
+steht in [`../LERNPFADE.md`](../LERNPFADE.md); ein vollständig ausgeschriebenes
+Beispiel liegt unter `../learning-paths/physik/`.
+
+---
+
+## Der Umfang, ehrlich gesagt
+
+29 Lernpfade à 4 Bildschirme sind rund 120 Bildschirme Fachtext, zweisprachig,
+mit Quellenangaben und je drei Aufgaben. Das ist Monate an Arbeit, wenn es gut
+werden soll — und die Entwürfe sind der Teil davon, der sich verteilen lässt:
+Wer ein Modul übernimmt, hat eine Vorlage und muss nicht bei Null anfangen.
+
+Die naheliegende Reihenfolge zum Umsetzen:
+
+1. **M2 Rechnernetze** — hier existieren schon zwei fertige Pfade in der
+   Grundbildung, an die sich anschließen lässt.
+2. **M4 Datenschutz** — der Teil, der am wenigsten Werkzeuge braucht.
+3. **M1 und M3** — Programmieren, das ohne eine laufende Umgebung wenig bringt;
+   das mitgelieferte Notebook deckt M3 ab.
+4. **M5 KI** — inhaltlich am schnellsten veraltet, deshalb zuletzt.
+
+---
 
 ## Quellen
 
@@ -42,15 +90,15 @@ wieder.
   (Behörde für Schule und Berufsbildung) — daraus stammen Modulnamen,
   Inhaltsbereiche und alle Fachbegriffe.
 - Die im Repository liegende Handreichung `Informatik Sek 1 (1).pdf` mit
-  Vorschlägen für Unterrichtssequenzen. Ihre Gliederung deckt sich mit den
-  fünf Modulen; einzelne Anregungen daraus sind eingeflossen.
+  Vorschlägen für Unterrichtssequenzen. Ihre Gliederung deckt sich mit den fünf
+  Modulen; die Zuordnung der Lernpfade zu ihren Unterrichtseinheiten steht in
+  jedem Entwurf.
 
 ## Anmerkung zu M1 und M3
 
-Beide Module gehören zum Themenfeld Softwareentwicklung und überschneiden
-sich inhaltlich stark — Variablen, Schleifen, Verzweigungen kommen zweimal
-vor, einmal blockbasiert und einmal in Text. Das ist im Bildungsplan so
-angelegt und kein Fehler: M3 nennt M1 ausdrücklich als fachinternen Bezug.
-Die Entwürfe gehen unterschiedlich damit um — M1 erklärt die Konzepte, M3
-setzt sie voraus und stellt die Frage, warum man dasselbe noch einmal anders
-schreibt.
+Beide Module gehören zum Themenfeld Softwareentwicklung und überschneiden sich
+inhaltlich stark — Variablen, Schleifen, Verzweigungen kommen zweimal vor,
+einmal blockbasiert und einmal in Text. Das ist im Bildungsplan so angelegt und
+kein Fehler: M3 nennt M1 ausdrücklich als fachinternen Bezug. Die Entwürfe gehen
+unterschiedlich damit um — M1 erklärt die Konzepte, M3 setzt sie voraus und
+macht die Wiederholung selbst zum Thema.
