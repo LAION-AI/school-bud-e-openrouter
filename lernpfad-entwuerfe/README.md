@@ -1,4 +1,4 @@
-# Entwürfe: Fach Informatik, fünf Module, 29 Lernpfade
+# Fach Informatik: fünf Module, 29 Lernpfade
 
 Seit dem Schuljahr 2025/26 ist Informatik in Hamburg **Pflichtfach in den
 Jahrgangsstufen 7 bis 10**, mit insgesamt vier Wochenstunden. Verbindlich ist
@@ -6,6 +6,11 @@ ein Kerncurriculum aus fünf Pflichtmodulen.
 
 Dieser Ordner plant, wie daraus Inhalte für Bud-E werden — ein Fach, fünf
 Module, und darin jeweils fünf bis sieben Lernpfade.
+
+> **Alle fünf Module sind inzwischen umgesetzt.** Sie liegen ausgeschrieben
+> unter [`../learning-paths/informatik/`](../learning-paths/informatik/) und
+> erscheinen in der Anwendung unter Informatik. Die Entwürfe hier bleiben als
+> Planungsgrundlage stehen — wer etwas ändern will, ändert die JSON-Dateien.
 
 ---
 
@@ -66,21 +71,21 @@ Beispiel liegt unter `../learning-paths/physik/`.
 
 ---
 
-## Der Umfang, ehrlich gesagt
+## Was jetzt zu tun bleibt
 
-29 Lernpfade à 4 Bildschirme sind rund 120 Bildschirme Fachtext, zweisprachig,
-mit Quellenangaben und je drei Aufgaben. Das ist Monate an Arbeit, wenn es gut
-werden soll — und die Entwürfe sind der Teil davon, der sich verteilen lässt:
-Wer ein Modul übernimmt, hat eine Vorlage und muss nicht bei Null anfangen.
+Die 29 Pfade sind geschrieben, zweisprachig, mit Aufgaben und Quellen. Was noch
+fehlt, ist die Arbeit, die nur im Unterricht entstehen kann:
 
-Die naheliegende Reihenfolge zum Umsetzen:
-
-1. **M2 Rechnernetze** — hier existieren schon zwei fertige Pfade in der
-   Grundbildung, an die sich anschließen lässt.
-2. **M4 Datenschutz** — der Teil, der am wenigsten Werkzeuge braucht.
-3. **M1 und M3** — Programmieren, das ohne eine laufende Umgebung wenig bringt;
-   das mitgelieferte Notebook deckt M3 ab.
-4. **M5 KI** — inhaltlich am schnellsten veraltet, deshalb zuletzt.
+- **Ausprobieren.** Jeder Pfad ist auf zwölf bis achtzehn Minuten Lesezeit
+  angelegt. Ob das für eine bestimmte Klasse stimmt, zeigt erst die Stunde.
+- **Werkzeuge bereitstellen.** M1 braucht Scratch, M2 braucht Filius, M5 braucht
+  Teachable Machine. Alle drei laufen im Browser ohne Konto — aber sie müssen
+  im Schulnetz erreichbar sein.
+- **Zahlen prüfen.** In M4 steht eine Größenordnung („~500 Datenpunkte je
+  Person“), die eine belegbare Quelle braucht oder als Schätzung gekennzeichnet
+  werden muss.
+- **Aktuell halten.** M5 veraltet am schnellsten; seine Beispiele gehören
+  einmal im Schuljahr durchgesehen.
 
 ---
 

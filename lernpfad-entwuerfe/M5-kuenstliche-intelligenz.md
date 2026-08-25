@@ -2,6 +2,12 @@
 
 **Modulentwurf** · Fach Informatik · Themenfeld Datenkompetenz · Jahrgang 7–10
 
+
+> **Umgesetzt.** Dieses Modul liegt fertig unter
+> [`learning-paths/informatik/m5-kuenstliche-intelligenz/`](../learning-paths/informatik/m5-kuenstliche-intelligenz/)
+> - 5 Lernpfade, zweisprachig, mit Aufgaben und Quellen. Der Entwurf
+> bleibt als Planungsgrundlage stehen; maßgeblich sind die JSON-Dateien.
+
 ## Die Moduldefinition
 
 ```json

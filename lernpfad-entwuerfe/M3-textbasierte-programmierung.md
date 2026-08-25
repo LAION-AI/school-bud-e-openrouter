@@ -2,6 +2,12 @@
 
 **Modulentwurf** · Fach Informatik · Themenfeld Softwareentwicklung · Jahrgang 7–10
 
+
+> **Umgesetzt.** Dieses Modul liegt fertig unter
+> [`learning-paths/informatik/m3-textbasierte-programmierung/`](../learning-paths/informatik/m3-textbasierte-programmierung/)
+> - 7 Lernpfade, zweisprachig, mit Aufgaben und Quellen. Der Entwurf
+> bleibt als Planungsgrundlage stehen; maßgeblich sind die JSON-Dateien.
+
 ## Die Moduldefinition
 
 ```json

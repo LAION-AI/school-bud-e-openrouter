@@ -2,6 +2,12 @@
 
 **Modulentwurf** · Fach Informatik · Themenfeld Sicherheit in verteilten Systemen · Jahrgang 7–10
 
+
+> **Umgesetzt.** Dieses Modul liegt fertig unter
+> [`learning-paths/informatik/m2-rechnernetze/`](../learning-paths/informatik/m2-rechnernetze/)
+> - 5 Lernpfade, zweisprachig, mit Aufgaben und Quellen. Der Entwurf
+> bleibt als Planungsgrundlage stehen; maßgeblich sind die JSON-Dateien.
+
 ## Die Moduldefinition
 
 ```json
