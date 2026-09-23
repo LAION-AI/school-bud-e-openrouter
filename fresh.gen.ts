@@ -4,12 +4,20 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $_middleware from "./routes/_middleware.ts";
 import * as $about from "./routes/about.tsx";
 import * as $api_bildungsplan from "./routes/api/bildungsplan.ts";
 import * as $api_chat from "./routes/api/chat.ts";
 import * as $api_debug from "./routes/api/debug.ts";
+import * as $api_grading from "./routes/api/grading.ts";
 import * as $api_imagegen from "./routes/api/imagegen.ts";
+import * as $api_learning_paths from "./routes/api/learning-paths.ts";
+import * as $api_mail from "./routes/api/mail.ts";
+import * as $api_mailsync from "./routes/api/mailsync.ts";
+import * as $api_music from "./routes/api/music.ts";
+import * as $api_openrouter_models from "./routes/api/openrouter-models.ts";
 import * as $api_papers from "./routes/api/papers.ts";
+import * as $api_requesty_models from "./routes/api/requesty-models.ts";
 import * as $api_stt from "./routes/api/stt.ts";
 import * as $api_tts from "./routes/api/tts.ts";
 import * as $api_wikipedia from "./routes/api/wikipedia.ts";
@@ -17,17 +25,6 @@ import * as $index from "./routes/index.tsx";
 import * as $ChatAgreement from "./islands/ChatAgreement.tsx";
 import * as $ChatAgreementOrIsland from "./islands/ChatAgreementOrIsland.tsx";
 import * as $ChatIsland from "./islands/ChatIsland.tsx";
-import * as $ChatIsland_components_ChatHeader from "./islands/ChatIsland/components/ChatHeader.tsx";
-import * as $ChatIsland_hooks_useAudioPlayback from "./islands/ChatIsland/hooks/useAudioPlayback.ts";
-import * as $ChatIsland_hooks_useChatPersistence from "./islands/ChatIsland/hooks/useChatPersistence.ts";
-import * as $ChatIsland_hooks_useChatState from "./islands/ChatIsland/hooks/useChatState.ts";
-import * as $ChatIsland_index from "./islands/ChatIsland/index.ts";
-import * as $ChatIsland_services_apiService from "./islands/ChatIsland/services/apiService.ts";
-import * as $ChatIsland_services_imageStore from "./islands/ChatIsland/services/imageStore.ts";
-import * as $ChatIsland_services_streamService from "./islands/ChatIsland/services/streamService.ts";
-import * as $ChatIsland_types from "./islands/ChatIsland/types.ts";
-import * as $ChatIsland_utils_textProcessing from "./islands/ChatIsland/utils/textProcessing.ts";
-import * as $ChatIsland_utils_triggerParsing from "./islands/ChatIsland/utils/triggerParsing.ts";
 import * as $Header from "./islands/Header.tsx";
 import * as $Menu from "./islands/Menu.tsx";
 import type { Manifest } from "$fresh/server.ts";
@@ -36,12 +33,20 @@ const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/_middleware.ts": $_middleware,
     "./routes/about.tsx": $about,
     "./routes/api/bildungsplan.ts": $api_bildungsplan,
     "./routes/api/chat.ts": $api_chat,
     "./routes/api/debug.ts": $api_debug,
+    "./routes/api/grading.ts": $api_grading,
     "./routes/api/imagegen.ts": $api_imagegen,
+    "./routes/api/learning-paths.ts": $api_learning_paths,
+    "./routes/api/mail.ts": $api_mail,
+    "./routes/api/mailsync.ts": $api_mailsync,
+    "./routes/api/music.ts": $api_music,
+    "./routes/api/openrouter-models.ts": $api_openrouter_models,
     "./routes/api/papers.ts": $api_papers,
+    "./routes/api/requesty-models.ts": $api_requesty_models,
     "./routes/api/stt.ts": $api_stt,
     "./routes/api/tts.ts": $api_tts,
     "./routes/api/wikipedia.ts": $api_wikipedia,
@@ -51,26 +56,6 @@ const manifest = {
     "./islands/ChatAgreement.tsx": $ChatAgreement,
     "./islands/ChatAgreementOrIsland.tsx": $ChatAgreementOrIsland,
     "./islands/ChatIsland.tsx": $ChatIsland,
-    "./islands/ChatIsland/components/ChatHeader.tsx":
-      $ChatIsland_components_ChatHeader,
-    "./islands/ChatIsland/hooks/useAudioPlayback.ts":
-      $ChatIsland_hooks_useAudioPlayback,
-    "./islands/ChatIsland/hooks/useChatPersistence.ts":
-      $ChatIsland_hooks_useChatPersistence,
-    "./islands/ChatIsland/hooks/useChatState.ts":
-      $ChatIsland_hooks_useChatState,
-    "./islands/ChatIsland/index.ts": $ChatIsland_index,
-    "./islands/ChatIsland/services/apiService.ts":
-      $ChatIsland_services_apiService,
-    "./islands/ChatIsland/services/imageStore.ts":
-      $ChatIsland_services_imageStore,
-    "./islands/ChatIsland/services/streamService.ts":
-      $ChatIsland_services_streamService,
-    "./islands/ChatIsland/types.ts": $ChatIsland_types,
-    "./islands/ChatIsland/utils/textProcessing.ts":
-      $ChatIsland_utils_textProcessing,
-    "./islands/ChatIsland/utils/triggerParsing.ts":
-      $ChatIsland_utils_triggerParsing,
     "./islands/Header.tsx": $Header,
     "./islands/Menu.tsx": $Menu,
   },
