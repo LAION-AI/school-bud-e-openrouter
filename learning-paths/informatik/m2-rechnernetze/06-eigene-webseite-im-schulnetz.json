@@ -1,0 +1,263 @@
+{
+  "accent": "emerald",
+  "exercises": [
+    {
+      "hint": {
+        "de": "Alle Antworten stehen auf den Bildschirmen davor – lies sie noch einmal von oben.",
+        "en": "All answers sit on the screens before – read them once more from the top."
+      },
+      "intro": {
+        "de": "Setze die fehlenden Wörter ein.",
+        "en": "Fill in the missing words."
+      },
+      "kind": "cloze",
+      "text": {
+        "de": "Ein ___ wie Firefox oder Chrome kann die Rolle eines ___ übernehmen. Er sendet eine ___ an einen anderen Computer. Dort läuft ein ___, der zum Beispiel eine ___ zurückschickt. Damit ein anderer Computer deinen Rechner findet, braucht er deine ___: zum Beispiel ___. Adressen wie ___ gelten nur im lokalen ___. Namen wie wikipedia.org heißen ___ – das ___ verrät dem Browser die passende IP-Adresse dazu.",
+        "en": "A ___ like Firefox or Chrome can take the role of a ___. It sends a ___ to another computer. There runs a ___ returning, say, a ___. For another computer to find yours it needs your ___: for instance ___. Addresses like ___ count only inside the local ___. Names like wikipedia.org are called ___ – the ___ tells the browser the matching IP address for it."
+      },
+      "title": {
+        "de": "1. Lückentext",
+        "en": "1. Fill in the blanks"
+      }
+    },
+    {
+      "hint": {
+        "de": "Wer fragt – und wer liefert? Formuliere danach deine eigene Regel in je einem Satz.",
+        "en": "Who asks – and who delivers? Afterwards phrase your own rule in one sentence each."
+      },
+      "intro": {
+        "de": "Setze zwei Beobachtungen zueinander in Beziehung.",
+        "en": "Relate two observations to each other."
+      },
+      "kind": "compare",
+      "text": {
+        "de": "Situation A: Du öffnest Wikipedia in deinem Browser. Wer ist der Client? Wer stellt die Webseite bereit? Situation B: Auf deinem Computer läuft ein Webserver, dein Partner öffnet deine Webseite. Wer ist jetzt Client, wer Server? Formuliere danach deine eigene Regel: Ein Client ist ... Ein Server ist ...",
+        "en": "Situation A: you open Wikipedia in your browser. Who is the client? Who provides the web page? Situation B: a web server runs on your computer, your partner opens your page. Who is client now, who server? Afterwards phrase your own rule: A client is ... A server is ..."
+      },
+      "title": {
+        "de": "2. Vergleiche",
+        "en": "2. Compare"
+      }
+    },
+    {
+      "intro": {
+        "de": "Auf diese Frage gibt es keine richtige Antwort.",
+        "en": "There is no right answer to this one."
+      },
+      "kind": "reflect",
+      "text": {
+        "de": "Bald sieht deine Klasse deine Webseite. Was stellst du darauf – und was gerade nicht? Begründe beides: Was gehört ins Netz einer 9. Klasse, was bleibt privat?",
+        "en": "Soon your class will see your web page. What do you put on it – and what exactly not? Justify both: what belongs on the net of year 9, what stays private?"
+      },
+      "title": {
+        "de": "3. Zum Nachdenken",
+        "en": "3. Something to think about"
+      }
+    }
+  ],
+  "icon": "🌐",
+  "key": "eigene-webseite-im-schulnetz",
+  "minutes": 30,
+  "screens": [
+    {
+      "blocks": [
+        {
+          "kind": "lead",
+          "text": {
+            "de": "Wenn du eine Webseite öffnest, arbeiten mindestens zwei Programme miteinander: Dein Browser möchte eine Webseite haben und stellt deshalb eine Anfrage – in diesem Moment ist er ein Client. Auf einem anderen Computer läuft ein Programm, das Webseiten bereitstellt: der Webserver. Er erhält die Anfrage und schickt zum Beispiel eine HTML-Datei oder ein Bild zurück. Einfach gesagt: Der Client fragt an, der Server stellt bereit.",
+            "en": "Opening a web page, at least two programs work together: your browser wants a web page, hence placing a request – at this moment it is a client. On another computer runs a program providing web pages: the web server. It receives the request returning, say, an HTML file or a picture. Simply said: the client requests, the server provides."
+          }
+        },
+        {
+          "kind": "paragraph",
+          "text": {
+            "de": "Client und Server beschreiben vor allem Rollen – und Rollen kann man wechseln. Beispiel 1: Du öffnest eine Internetseite, dein Browser fragt an – dein Computer ist der Client. Beispiel 2: Auf deinem Computer läuft ein Webserver, eine Mitschülerin öffnet deine Webseite – dein Computer ist jetzt der Server. Ein Server muss dabei kein riesiger Computer in einem Rechenzentrum sein: Auch dein Schulcomputer kann für kurze Zeit zum Server werden. Genau das probierst du in diesem Pfad aus – versprochen.",
+            "en": "Client and server describe mostly roles – roles one can swap. Example 1: you open a web site, your browser requests – your computer is the client. Example 2: a web server runs on your computer, a classmate opens your page – your computer is now the server. A server need not be a giant computer in a data centre: even your school computer can turn server for a short while. Exactly that you try in this path – promised."
+          }
+        },
+        {
+          "kind": "paragraph",
+          "text": {
+            "de": "Merke dir die fünf Wörter dieses Bildschirms, sie tragen den ganzen Pfad: Browser, Client, Server, Anfrage, Webseite. Wer sie auseinanderhalten kann, versteht das halbe Internet – denn dahinter steckt immer dasselbe Muster: jemand fragt, jemand liefert. Auf den nächsten Bildschirmen suchst du das Muster in deinem Alltag, bevor du es selbst baust.",
+            "en": "Remember the five words of this screen, they carry the whole path: browser, client, server, request, web page. Whoever keeps them apart grasps half the internet – for behind always sits the same pattern: someone asks, someone delivers. On the next screens you seek the pattern in your everyday life before building it yourself."
+          }
+        },
+        {
+          "kind": "paragraph",
+          "text": {
+            "de": " clients stecken übrigens überall: Firefox, Chrome, Edge, Safari – alle fragen an, alle heißen Clients. Sogar Apps enthalten kleine Browser im Bauch: Tippe in einer App auf einen Link, und intern öffnet sich eine Seite – Client im Client. Wer das einmal sieht, erkennt das Muster überall: Überall, wo etwas angezeigt wird, hat vorher jemand gefragt.",
+            "en": "Clients incidentally sit everywhere: Firefox, Chrome, Edge, Safari – all request, all are called clients. Even apps hold small browsers in their belly: tapping a link inside an app opens a page internally – client inside client. Whoever sees that once spots the pattern everywhere: everywhere something gets displayed, someone asked before."
+          }
+        }
+      ],
+      "title": {
+        "de": "Wer fragt hier eigentlich wen?",
+        "en": "Who actually asks whom here?"
+      }
+    },
+    {
+      "blocks": [
+        {
+          "kind": "lead",
+          "text": {
+            "de": "Viele Apps und Webseiten funktionieren nach dem Client-Server-Prinzip: YouTube, Instagram, TikTok, Schulplattformen, Onlinespiele, Messenger, Streamingdienste. Wenn du ein Video aufrufst, muss dieses Video irgendwo gespeichert sein – ein Server stellt es bereit, dein Handy oder Browser fordert es als Client an.",
+            "en": "Many apps and web pages work by the client-server principle: YouTube, Instagram, TikTok, school platforms, online games, messengers, streaming services. Calling a video, it must sit stored somewhere – a server provides it, your phone or browser requests it as a client."
+          }
+        },
+        {
+          "kind": "paragraph",
+          "text": {
+            "de": "Mache den Test mit deiner Lieblings-App, am besten mit einem Partner: Was ist bei der Nutzung der Client – Handy, Browser, Spiel? Welche Informationen könnten von einem Server kommen – Videos, Nachrichten, Spielstände, Profile? Und was würde passieren, wenn dieser Server nicht erreichbar wäre – leere Seite, Fehlermeldung, langweiliger Nachmittag? Wer diese drei Fragen beantworten kann, hat das Prinzip verstanden – egal bei welcher App.",
+            "en": "Test it with your favourite app, best with a partner: what is the client in use – phone, browser, game? Which information could come from a server – videos, messages, scores, profiles? And what would happen were this server unreachable – empty page, error message, boring afternoon? Whoever can answer these three questions grasped the principle – whatever the app."
+          }
+        },
+        {
+          "kind": "paragraph",
+          "text": {
+            "de": "Noch ein Gedanke dazu: Server stehen selten bei dir zu Hause. Sie wohnen in Rechenzentren – großen Hallen voller Computer, die Tag und Nacht laufen, gekühlt und bewacht. Dein Video reist von dort über viele Stationen bis zu dir: ein weiter Weg für einen kurzen Clip. Behalte das im Kopf, wenn du gleich deinen eigenen Server startest: Deiner steht auf deinem Tisch – und ist trotzdem ein echter.",
+            "en": "One more thought along: servers rarely stand at your home. They live in data centres – big halls full of computers running day and night, cooled and guarded. Your video travels from there over many stations to you: a long way for a short clip. Keep that in mind once you start your own server right away: yours stands on your desk – yet is a real one."
+          }
+        },
+        {
+          "kind": "paragraph",
+          "text": {
+            "de": "Deine Schulplattform lebt übrigens genauso: Stundenplan, Noten, Aufgaben – alles liegt auf Servern der Schule oder des Anbieters. Fällt das Netz aus, bleibt die App leer zurück: Client ohne Server ist wie Telefon ohne Gegenüber. Darum gibt es Vertretungspläne auch noch an der Pinnwand – Papier braucht keinen Server.",
+            "en": "Your school platform incidentally lives exactly so: timetable, grades, tasks – all lying on school or provider servers. If the net drops, the app stays emptily behind: client without server resembles phone without counterpart. Hence substitution plans still hang on the pinboard too – paper needs no server."
+          }
+        }
+      ],
+      "title": {
+        "de": "Server begegnen dir jeden Tag",
+        "en": "Servers meet you every day"
+      }
+    },
+    {
+      "blocks": [
+        {
+          "kind": "lead",
+          "text": {
+            "de": "Jetzt baust du selbst ein kleines Client-Server-System auf. Du brauchst eine fertige Test-Webseite – lade sie über den Link unten herunter und speichere sie als index.html in einem eigenen Ordner, zum Beispiel Downloads/webserver-test. Der Link steht unten bei den Quellen: anklicken, Seite speichern, fertig.",
+            "en": "Now build a small client-server system yourself. You need a ready test web page – download it through the link below saving it as index.html into its own folder, say Downloads/webserver-test. The link sits below at the sources: clicking, saving the page, done."
+          }
+        },
+        {
+          "kind": "paragraph",
+          "text": {
+            "de": "Öffne PowerShell oder ein Terminal und wechsle in diesen Ordner. Unter Windows zum Beispiel: cd Downloads\\webserver-test, danach python -m http.server 8000 (falls python nicht geht: py -m http.server 8000). Unter Linux: cd ~/Downloads/webserver-test, danach python3 -m http.server 8000. Jetzt läuft auf deinem Computer ein kleiner Webserver. Öffne im Browser http://localhost:8000 – erscheint die Webseite, funktioniert dein Server.",
+            "en": "Open PowerShell or a terminal changing into this folder. On Windows say: cd Downloads\\webserver-test, then python -m http.server 8000 (if python fails: py -m http.server 8000). On Linux: cd ~/Downloads/webserver-test, then python3 -m http.server 8000. Now a small web server runs on your computer. Open http://localhost:8000 in the browser – if the page appears, your server works."
+          }
+        },
+        {
+          "kind": "paragraph",
+          "text": {
+            "de": "Was bedeutet localhost? Ganz einfach: dieser Computer selbst. Du greifst also mit deinem Browser auf den Webserver zu, der auf deinem eigenen Computer läuft – dein Browser ist der Client, das Python-Programm der Webserver. Alles bleibt auf deinem Rechner: ideal zum Üben, denn kaputtgehen kann dabei nichts. Erst der nächste Bildschirm verlässt deinen Computer.",
+            "en": "What does localhost mean? Simply: this computer itself. So with your browser you access the web server running on your own computer – your browser is the client, the Python program the web server. Everything stays on your machine: ideal for practising, for nothing can break. Only the next screen leaves your computer."
+          }
+        },
+        {
+          "kind": "sources",
+          "items": [
+            {
+              "label": {
+                "de": "Test-Webseite herunterladen (index.html)",
+                "en": "Download the test web page (index.html)"
+              },
+              "url": "https://school.bud-e.ai/webserver-test/index.html"
+            }
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": {
+            "de": "Erscheint die Seite nicht? Drei Checks retten dich: Läuft der Server noch (Terminal offen? Fehlermeldung?)? Bist du im richtigen Ordner (eine Ebene daneben, und er serviert Leere)? Heißt die Datei wirklich exakt index.html – klein geschrieben? Gerade Letzteres fängt Anfänger: Windows verzeiht Großschreibung, Linux und das Netz nicht. Prüfen statt verzweifeln.",
+            "en": "If the page appears not? Three checks rescue you: does the server still run (terminal open? error message)? Are you in the right folder (one level beside, and it serves emptiness)? Is the file truly named exactly index.html – lower case? Especially the last catches beginners: Windows forgives capitals, Linux and the net do not. Checking instead of despairing."
+          }
+        }
+      ],
+      "title": {
+        "de": "Jetzt wirst du selbst zum Webserver",
+        "en": "Now become the web server yourself"
+      }
+    },
+    {
+      "blocks": [
+        {
+          "kind": "lead",
+          "text": {
+            "de": "Wenn ein anderer Computer deine Webseite öffnen möchte, reicht localhost nicht mehr. Denn localhost bedeutet immer nur: mein eigener Computer. Der andere Computer muss wissen, unter welcher Adresse dein Computer im Netzwerk erreichbar ist. Dafür gibt es die IP-Adresse – vereinfacht: die Adresse deines Computers, zum Beispiel 192.168.1.42.",
+            "en": "When another computer wants to open your web page, localhost is no longer enough. For localhost always means only: my own computer. The other computer must know at which address your computer is reachable in the network. For that exists the IP address – simplified: your computer's address, say 192.168.1.42."
+          }
+        },
+        {
+          "kind": "paragraph",
+          "text": {
+            "de": "Finde deine lokale IP-Adresse: Unter Windows gib in PowerShell ipconfig ein und suche bei deiner Netzwerkverbindung nach IPv4-Adresse. Unter Linux nimm hostname -I oder ip addr. Notiere sie – du brauchst sie gleich. Hier müssen wir zwei Arten unterscheiden: Adressen wie 192.168.1.42 oder 10.0.0.25 heißen privat oder lokal. Sie gelten nur innerhalb eines lokalen Netzwerks – zu Hause, in einer Firma, in einer Schule. Diese Adresse benutzt du für unseren Versuch.",
+            "en": "Find your local IP address: on Windows type ipconfig into PowerShell seeking IPv4-Adresse at your connection. On Linux take hostname -I or ip addr. Note it – you need it right away. Here two kinds must be told apart: addresses like 192.168.1.42 or 10.0.0.25 are called private or local. They count only inside a local network – at home, in a company, in a school. This address you use for our experiment."
+          }
+        },
+        {
+          "kind": "paragraph",
+          "text": {
+            "de": "Das Schulnetz besitzt nach außen zusätzlich eine öffentliche IP-Adresse, mit der es mit dem Internet spricht. Dabei teilen sich häufig viele Schulcomputer dieselbe öffentliche Adresse. Deshalb kann man normalerweise nicht einfach die öffentliche IP-Adresse eingeben und damit einen bestimmten Schüler-PC erreichen – dafür wären zusätzliche Einstellungen an Router und Firewall nötig. Für unseren Versuch benutzen wir deshalb die private, lokale Adresse.",
+            "en": "The school net additionally owns a public IP address outward, talking with the internet through it. Often many school computers share the same public address. Hence normally you cannot simply type the public IP address reaching one particular pupil PC – that would need extra settings on router and firewall. For our experiment we therefore use the private, local address."
+          }
+        },
+        {
+          "kind": "paragraph",
+          "text": {
+            "de": "Aufgabe – teste deinen Server im Schulnetz: Dein Webserver muss weiterhin laufen. Nun soll dein Partner versuchen, deine Webseite auf seinem Computer aufzurufen – zum Beispiel http://192.168.1.42:8000 (mit deiner Adresse statt der Beispiel-Adresse). Erscheint die Seite, habt ihr ein echtes Client-Server-System aufgebaut: Dein Computer ist der Server, seiner der Client, deine lokale IP-Adresse die Adresse. Klappt es nicht, kann das am Schulnetz liegen: Manche Netze verhindern absichtlich direkte Verbindungen zwischen Geräten – dann sprecht mit eurer Lehrkraft.",
+            "en": "Task – test your server in the school net: your web server must keep running. Now your partner shall try opening your page on their computer – say http://192.168.1.42:8000 (with your address instead of the example). If the page appears, you built a real client-server system: your computer is the server, theirs the client, your local IP address the address. If it fails, the school net may cause it: some nets deliberately block direct device connections – then talk to your teacher."
+          }
+        }
+      ],
+      "title": {
+        "de": "Wie erreicht dich das Schulnetz?",
+        "en": "How does the school net reach you?"
+      }
+    },
+    {
+      "blocks": [
+        {
+          "kind": "lead",
+          "text": {
+            "de": "IP-Adressen sind schwer zu merken – stell dir vor, du müsstest jede Webseite über eine Nummer wie 203.0.113.25 aufrufen. Deshalb verwenden wir Namen wie wikipedia.org oder meine-super-seite.de: Solche Namen heißen Domains. Computer arbeiten weiterhin mit IP-Adressen, also braucht es ein System, das zu jeder Domain die passende Adresse findet: das DNS, das Domain Name System – vereinfacht ein Adressbuch. Du gibst den Namen ein, DNS liefert die Nummer, der Browser erreicht den Server.",
+            "en": "IP addresses are hard to remember – picture calling every web page through a number like 203.0.113.25. Hence we use names like wikipedia.org or meine-super-seite.de: such names are called domains. Computers keep working with IP addresses, so a system is needed finding the fitting address for every domain: the DNS, the Domain Name System – simplified an address book. You type the name, DNS delivers the number, the browser reaches the server."
+          }
+        },
+        {
+          "kind": "paragraph",
+          "text": {
+            "de": "Aufgabe – wie bekommt man eine eigene Domain? Suche im Internet nach Domain Check: Er zeigt, ob ein Wunschname noch frei ist. Denke dir einen aus – meine-fussballseite.de oder gaming-tipps.de – und prüfe bei einem Anbieter: Ist sie verfügbar? Was kostet sie, pro Monat oder pro Jahr, im ersten Jahr anders als später? Wichtig: nichts kaufen, nur schauen! So lernst du den Markt kennen, ohne Geld auszugeben.",
+            "en": "Task – how does one get an own domain? Search the internet for domain check: it shows whether a wished name is still free. Think one up – meine-fussballseite.de or gaming-tipps.de – checking at a provider: is it available? What does it cost, per month or year, first year different than later? Important: buy nothing, only looking! Thus you learn the market without spending money."
+          }
+        },
+        {
+          "kind": "paragraph",
+          "text": {
+            "de": "Jetzt baust du deine eigene Webseite – mit KI-Hilfe. Überlege dir ein Thema: Lieblingssport, Computerspiel, Band, Tier, Hobby, erfundenes Unternehmen, Fan-Seite oder Startseite ohne private Daten. Bitte zum Beispiel School Bud-e: Erstelle mir eine einfache, schöne Webseite als einzelne HTML-Datei zum Thema Basketball – mit Überschrift, kurzen Texten und interessanten Bereichen, vollständigem Code. Ersetze damit den Code in deiner index.html (im Ordner deines Webservers), speichere, lade http://localhost:8000 neu – deine Seite erscheint. Falls die alte bleibt: Neu laden drücken.",
+            "en": "Now build your own web page – with AI help. Think of a topic: favourite sport, computer game, band, animal, hobby, invented company, fan page or start page without private data. Ask say School Bud-e: create me a simple, beautiful page as a single HTML file about basketball – with headline, short texts and interesting parts, complete code. Replace the code in your index.html with it (in your web server's folder), save, reload http://localhost:8000 – your page appears. If the old stays: press reload."
+          }
+        },
+        {
+          "kind": "paragraph",
+          "text": {
+            "de": "Finale: Finde noch einmal deine lokale IP-Adresse, dein Partner öffnet http://deine-adresse:8000 – und sieht deine selbst erstellte Seite. Dann tauscht ihr. Wenn das Netz es erlaubt, geht es reihum: Adressen tauschen, Seiten öffnen, Themen und Designs vergleichen. Was ihr damit praktisch gemacht habt: HTML-Datei auf einem Computer, Webserver macht sie erreichbar, lokale IP-Adresse als Adresse, Browser als Client – bei echten Seiten kommt dazu: Domain, DNS, IP-Adresse, Webserver, Webseite. Gelesen war gestern – heute habt ihr betrieben.",
+            "en": "Finale: find your local IP address once more, your partner opens http://your-address:8000 – seeing your self-made page. Then swap. If the net allows, go around: swapping addresses, opening pages, comparing topics and designs. What you practically did thereby: HTML file on a computer, web server makes it reachable, local IP address as address, browser as client – with real pages added: domain, DNS, IP address, web server, web page. Reading was yesterday – today you operated."
+          }
+        }
+      ],
+      "title": {
+        "de": "Namen statt Nummern – und deine eigene Seite",
+        "en": "Names instead of numbers – and your own page"
+      }
+    }
+  ],
+  "summary": {
+    "de": "Vom Browser bis zur eigenen Seite im Schulnetz: Client, Server, IP, Domain, DNS – selbst aufgebaut.",
+    "en": "From browser to your own page in the school network: client, server, IP, domain, DNS – built yourself."
+  },
+  "title": {
+    "de": "Meine eigene Webseite im Schulnetz",
+    "en": "My own web page in the school network"
+  }
+}
