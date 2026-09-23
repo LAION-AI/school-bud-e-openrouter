@@ -17,6 +17,7 @@ import * as $api_mailsync from "./routes/api/mailsync.ts";
 import * as $api_music from "./routes/api/music.ts";
 import * as $api_openrouter_models from "./routes/api/openrouter-models.ts";
 import * as $api_papers from "./routes/api/papers.ts";
+import * as $api_requesty_models from "./routes/api/requesty-models.ts";
 import * as $api_stt from "./routes/api/stt.ts";
 import * as $api_tts from "./routes/api/tts.ts";
 import * as $api_wikipedia from "./routes/api/wikipedia.ts";
@@ -45,6 +46,7 @@ const manifest = {
     "./routes/api/music.ts": $api_music,
     "./routes/api/openrouter-models.ts": $api_openrouter_models,
     "./routes/api/papers.ts": $api_papers,
+    "./routes/api/requesty-models.ts": $api_requesty_models,
     "./routes/api/stt.ts": $api_stt,
     "./routes/api/tts.ts": $api_tts,
     "./routes/api/wikipedia.ts": $api_wikipedia,

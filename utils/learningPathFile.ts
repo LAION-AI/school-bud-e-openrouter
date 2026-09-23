@@ -547,6 +547,7 @@ export interface ModuleMeta {
   icon: string;
   accent: Accent;
   badge?: string;
+  level?: string;
 }
 
 /** Reads the _module.json that describes a folder of paths. */
@@ -567,6 +568,18 @@ export function parseModuleMeta(
   if (accent && !ACCENTS.includes(accent)) {
     p.fail("accent", `unknown colour "${accent}" - allowed: ${ACCENTS.join(", ")}`);
   }
+  // The stage the module belongs to, e.g. "sek1" or "sek2". Unknown to the
+  // app is fine - the module view uses it as a tab key - but it has to be a
+  // clean key, otherwise two spellings of the same stage drift apart.
+  const levelRaw = str(raw.level);
+  let level: string | undefined;
+  if (levelRaw) {
+    if (!/^[a-z0-9][a-z0-9-]*$/.test(levelRaw)) {
+      p.warn("level", 'use lowercase letters, digits and hyphens, e.g. "sek2" - ignored');
+    } else {
+      level = levelRaw;
+    }
+  }
   if (!title || p.errors.length) {
     return { errors: p.errors, warnings: p.warnings };
   }
@@ -580,6 +593,7 @@ export function parseModuleMeta(
       // in a hurry still looks like it belongs.
       accent: accent && ACCENTS.includes(accent) ? accent : fallbackAccent,
       ...(str(raw.badge) ? { badge: str(raw.badge).slice(0, 12) } : {}),
+      ...(level ? { level } : {}),
     },
     errors: p.errors,
     warnings: p.warnings,

@@ -120,6 +120,8 @@ export default function LearningModal({
   const [pathKey, setPathKey] = useState<string | null>(null);
   const [screenIndex, setScreenIndex] = useState(0);
   const [showResume, setShowResume] = useState(false);
+  /** Which stage tab the module grid shows ("sek1" unless told otherwise). */
+  const [levelKey, setLevelKey] = useState<string>("sek1");
 
   const scrollRef = useRef<HTMLElement | null>(null);
 
@@ -186,6 +188,7 @@ export default function LearningModal({
   ) => {
     setSubjectKey(nextSubject.key);
     setModuleKey(nextModule.key);
+    setLevelKey(nextModule.level ?? "sek1");
     setPathKey(nextPath.key);
     setScreenIndex(at);
     setShowResume(false);
@@ -380,7 +383,12 @@ export default function LearningModal({
               L={L}
               subject={subject}
               progress={progress}
-              onOpen={(m) => setModuleKey(m.key)}
+              levelKey={levelKey}
+              onLevel={setLevelKey}
+              onOpen={(m) => {
+                setLevelKey(m.level ?? "sek1");
+                setModuleKey(m.key);
+              }}
             />
           )}
 
@@ -577,6 +585,13 @@ function SubjectGrid({
 
 // ------------------------------------------------------------ module level
 
+/** Display name for a stage tab. Unknown stages show their key as is. */
+function levelLabel(level: string, t: (key: string) => string): string {
+  if (level === "sek1") return t("levelSek1");
+  if (level === "sek2") return t("levelSek2");
+  return level;
+}
+
 /**
  * The modules of one subject.
  *
@@ -584,20 +599,38 @@ function SubjectGrid({
  * a curriculum, not a pile of topics. The tile carries an optional badge -
  * "M1", "Jg. 8-10" - so a teacher can see at a glance which part of the plan
  * a module covers.
+ *
+ * When a subject holds modules from more than one stage (the modules carry an
+ * optional "level" such as "sek1" or "sek2"), one tab per stage appears above
+ * the tiles. A subject with a single stage looks exactly as before.
  */
 function ModuleGrid({
   t,
   L,
   subject,
   progress,
+  levelKey,
+  onLevel,
   onOpen,
 }: {
   t: (key: string) => string;
   L: (value: { de: string; en: string }) => string;
   subject: Subject;
   progress: Progress;
+  levelKey: string;
+  onLevel: (level: string) => void;
   onOpen: (module: Module) => void;
 }) {
+  // One tab per stage, in first-seen order - "sek1" modules without an
+  // explicit level come first because they were written first.
+  const levels: string[] = [];
+  for (const m of subject.modules) {
+    const lv = m.level ?? "sek1";
+    if (!levels.includes(lv)) levels.push(lv);
+  }
+  const active = levels.includes(levelKey) ? levelKey : levels[0] ?? "sek1";
+  const visible = subject.modules.filter((m) => (m.level ?? "sek1") === active);
+
   return (
     <div class="max-w-5xl mx-auto px-4 py-8">
       <div class="flex items-center gap-3">
@@ -608,8 +641,27 @@ function ModuleGrid({
         </div>
       </div>
 
+      {levels.length > 1 && (
+        <div class="mt-5 inline-flex rounded-xl bg-slate-200 p-1 gap-1">
+          {levels.map((lv) => (
+            <button
+              type="button"
+              key={lv}
+              onClick={() => onLevel(lv)}
+              class={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all ${
+                lv === active
+                  ? "bg-white shadow text-slate-800"
+                  : "text-slate-500 hover:text-slate-700"
+              }`}
+            >
+              {levelLabel(lv, t)}
+            </button>
+          ))}
+        </div>
+      )}
+
       <div class="mt-6 grid gap-4 sm:grid-cols-2">
-        {subject.modules.map((module) => {
+        {visible.map((module) => {
           // How far the reader has come across this module's paths.
           const started = module.paths.filter((p) =>
             (progress.screens[p.key] ?? 0) > 0

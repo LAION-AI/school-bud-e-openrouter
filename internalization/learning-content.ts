@@ -7,6 +7,8 @@
 export const learningContent: InternalizationContent = {
   en: {
     chooseModuleHint: "Choose a module.",
+    levelSek1: "Lower secondary",
+    levelSek2: "Upper secondary",
     openNotebook: "Try it in the notebook",
     openNotebookHint: "Opens the notebook",
     backToModules: "Back to the modules",
@@ -74,6 +76,8 @@ export const learningContent: InternalizationContent = {
   },
   de: {
     chooseModuleHint: "Wähle ein Modul.",
+    levelSek1: "Sekundarstufe 1",
+    levelSek2: "Sekundarstufe 2",
     openNotebook: "Probier es im Notizbuch",
     openNotebookHint: "Öffnet das Notizbuch",
     backToModules: "Zurück zu den Modulen",

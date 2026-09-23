@@ -160,6 +160,12 @@ export interface Module {
   accent: Accent;
   /** Shown on the tile, e.g. "M1" or "Jg. 8-10". Optional. */
   badge?: string;
+  /**
+   * Which stage the module belongs to, e.g. "sek1" or "sek2". Optional -
+   * a module without one counts as "sek1". When a subject holds modules
+   * from more than one stage, the module view shows one tab per stage.
+   */
+  level?: string;
   paths: LearningPath[];
 }
 

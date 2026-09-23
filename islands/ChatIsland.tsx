@@ -398,6 +398,8 @@ export default function ChatIsland({ lang }: { lang: string }) {
     // the server picks", which is what almost everyone will want.
     orLlmModel: localStorage.getItem("bud-e-or-llm-model") || "",
     orVlmModel: localStorage.getItem("bud-e-or-vlm-model") || "",
+    rqLlmModel: localStorage.getItem("bud-e-rq-llm-model") || "",
+    rqVlmModel: localStorage.getItem("bud-e-rq-vlm-model") || "",
     orAsrModel: localStorage.getItem("bud-e-or-asr-model") || "",
     orTtsModel: localStorage.getItem("bud-e-or-tts-model") || "",
     orImageModel: localStorage.getItem("bud-e-or-image-model") || "",
@@ -620,6 +622,8 @@ export default function ChatIsland({ lang }: { lang: string }) {
         "",
       orLlmModel: localStorage.getItem("bud-e-or-llm-model") || "",
       orVlmModel: localStorage.getItem("bud-e-or-vlm-model") || "",
+      rqLlmModel: localStorage.getItem("bud-e-rq-llm-model") || "",
+      rqVlmModel: localStorage.getItem("bud-e-rq-vlm-model") || "",
       orAsrModel: localStorage.getItem("bud-e-or-asr-model") || "",
       orTtsModel: localStorage.getItem("bud-e-or-tts-model") || "",
       orImageModel: localStorage.getItem("bud-e-or-image-model") || "",
@@ -649,6 +653,8 @@ export default function ChatIsland({ lang }: { lang: string }) {
         "",
       orLlmModel: localStorage.getItem("bud-e-or-llm-model") || "",
       orVlmModel: localStorage.getItem("bud-e-or-vlm-model") || "",
+      rqLlmModel: localStorage.getItem("bud-e-rq-llm-model") || "",
+      rqVlmModel: localStorage.getItem("bud-e-rq-vlm-model") || "",
       orAsrModel: localStorage.getItem("bud-e-or-asr-model") || "",
       orTtsModel: localStorage.getItem("bud-e-or-tts-model") || "",
       orImageModel: localStorage.getItem("bud-e-or-image-model") || "",
@@ -680,6 +686,8 @@ export default function ChatIsland({ lang }: { lang: string }) {
     );
     localStorage.setItem("bud-e-or-llm-model", newSettings.orLlmModel ?? "");
     localStorage.setItem("bud-e-or-vlm-model", newSettings.orVlmModel ?? "");
+    localStorage.setItem("bud-e-rq-llm-model", newSettings.rqLlmModel ?? "");
+    localStorage.setItem("bud-e-rq-vlm-model", newSettings.rqVlmModel ?? "");
     localStorage.setItem("bud-e-or-asr-model", newSettings.orAsrModel ?? "");
     localStorage.setItem("bud-e-or-tts-model", newSettings.orTtsModel ?? "");
     localStorage.setItem("bud-e-or-image-model", newSettings.orImageModel ?? "");
@@ -4076,6 +4084,9 @@ ${result.snapshot}`
         // Overrides that only apply when the key is an OpenRouter key.
         orLlmModel: settings.orLlmModel,
         orVlmModel: settings.orVlmModel,
+        // Overrides that only apply when the key is a Requesty key.
+        rqLlmModel: settings.rqLlmModel,
+        rqVlmModel: settings.rqVlmModel,
         systemPrompt: settings.systemPrompt,
         // Only the flags travel; the instructions themselves are assembled
         // on the server.
