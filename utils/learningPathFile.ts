@@ -21,7 +21,6 @@
 
 import type {
   Accent,
-  Module,
   Block,
   CalloutTone,
   Exercise,
@@ -65,6 +64,7 @@ const BLOCK_KINDS = [
   "lead",
   "heading",
   "paragraph",
+  "code",
   "list",
   "steps",
   "callout",
@@ -180,6 +180,12 @@ function parseBlock(raw: any, where: string, p: Problems): Block | null {
         return { kind, text, ...(source ? { source } : {}) };
       }
       return { kind, text };
+    }
+
+    case "code": {
+      const text = localized(raw.text, `${where}.text`, p);
+      const caption = localized(raw.caption, `${where}.caption`, p, false);
+      return text ? { kind, text, ...(caption ? { caption } : {}) } : null;
     }
 
     case "list": {

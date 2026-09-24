@@ -240,6 +240,23 @@ Etwas größer gesetzt. Gehört an den Anfang eines Bildschirms.
 { "kind": "paragraph", "text": { "de": "…", "en": "…" } }
 ```
 
+Einzelne Befehle und Dateinamen lassen sich in `lead`, `paragraph`,
+`steps` und `callout` mit Backticks hervorheben, etwa
+`"Gib \`ipconfig\` ein."`. Der Text wird als Code dargestellt und nicht ausgeführt.
+
+### `code` — Befehle und Beispielausgaben
+
+Eine abgesetzte, gut lesbare Codebox. `caption` ist optional; `text`
+enthält den Befehl oder die Ausgabe als Text, bei Bedarf mit Zeilenumbrüchen.
+
+```json
+{
+  "kind": "code",
+  "caption": { "de": "Eingabe in CMD", "en": "Enter in Command Prompt" },
+  "text": { "de": "ipconfig", "en": "ipconfig" }
+}
+```
+
 ### `heading` — Zwischenüberschrift
 
 ```json
