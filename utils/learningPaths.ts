@@ -40,6 +40,7 @@ export type Block =
   | { kind: "lead"; text: Localized }
   | { kind: "heading"; text: Localized }
   | { kind: "paragraph"; text: Localized }
+  | { kind: "code"; text: Localized; caption?: Localized }
   | { kind: "list"; ordered?: boolean; items: Localized[] }
   | { kind: "steps"; items: StepEntry[] }
   | {
