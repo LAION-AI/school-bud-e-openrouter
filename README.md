@@ -24,6 +24,32 @@ School Bud-E is an intelligent and empathetic learning assistant designed to rev
 - **Character consistency** — image generation supports character reference across turns
 - **Privacy-focused design** — local-first, no mandatory cloud dependency
 
+## Classrooms, personal rooms and learning paths
+
+`/my` offers separate classroom and personal-room tabs. Personal rooms at
+`/<pseudonym>` require the password to unlock their history on each device.
+Chats, images, provider keys, settings and saved correction reports are encrypted
+in the browser before storage. AI providers receive the selected content after
+unlocking; explicit local exports are unencrypted. Original correction uploads
+and unfinished intermediate results remain in the open dialog, not persistent
+server storage. See [personal rooms](PERSONAL_ROOMS.md) and
+[classrooms](KLASSENRAEUME.md) for the boundaries and setup.
+
+Batch corrections support PDF, Word, images and ZIP uploads, recoverable
+checkpoints, transcript review and pupil-facing PDF/Word feedback. They remain
+proposals for teacher review, not automatically approved grades.
+
+Learning paths now include a separate Years 5–6 tab with 18 short nature-and-
+technology paths, 24 physics paths and the existing computing curriculum.
+See [learning paths](LERNPFADE.md) for editing and readable share links.
+
+For the web app, use Deno 2 with `node:sqlite` support. Run `deno task pyodide`
+and `deno task scratch` once to fetch the self-hosted editors, then
+`deno task build` and `PORT=8000 deno task preview`. Production requires HTTPS.
+`CLASSROOM_DATA_DIR` defaults to `/var/lib/school-bude-classrooms`; preserve and
+back up that private directory, including its database and `master.key`.
+The Docker Compose template mounts a dedicated persistent School data volume.
+
 ## Experimental Image Generation
 
 > **This branch includes experimental features for AI image generation and editing.**
