@@ -54,6 +54,20 @@ oder einen Betreiber, der manipulierten JavaScript-Code ausliefert.
 
 ## Korrekturen und bewusste Exporte
 
+Der Einstieg zeigt zuerst „Arbeiten hochladen“, dann die Korrekturkriterien.
+Standardmäßig laufen Abschrift, Zuordnung und Bewertung nacheinander;
+„Prüfpause einlegen“ aktiviert die manuelle Prüfung dazwischen. Bis zu sechs
+Anfragen laufen gleichzeitig. Fehlende Kriterien können auch im automatischen
+Ablauf eine Rückfrage auslösen.
+
+„Schon angefangen? Zwischenstand laden“ steht weiter unten und ist zunächst
+eingeklappt. Die fünfteilige Kurzanleitung ersetzt vorübergehend den Inhalt im
+selben Dialog; Eingaben und laufende Arbeit bleiben erhalten. Info-Knöpfe helfen
+per Maus, Tastatur und Touch bei API-Key, Raumbudget, Anbieterguthaben, Prüfpause
+und lokalen Sicherungen. Hilfe, Dateiauswahl und Sicherungsimport starten keine
+Modellanfrage. Das Raumbudget ist eine zusätzliche Kostengrenze in Klassenräumen,
+kein Anbieterguthaben; im persönlichen Raum gilt kein Klassenraumbudget.
+
 „Korrekturvorschläge“ nutzt denselben Ablauf wie Buddy. Fertige Berichte und
 Kriterien werden im privaten Chat verschlüsselt gespeichert und können nach
 erneutem Entsperren auch auf einem anderen Gerät wieder geöffnet werden.
