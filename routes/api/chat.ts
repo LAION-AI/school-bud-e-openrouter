@@ -2,6 +2,7 @@
 import { Handlers } from "$fresh/server.ts";
 import { ServerSentEventStream } from "https://deno.land/std@0.210.0/http/server_sent_event_stream.ts";
 import { chatContent } from "../../internalization/content.ts";
+import { scratchDataPrompt, scratchPrompt, scratchUnavailablePrompt } from "../../utils/scratchTools.ts";
 import {
   attemptsFor,
   getCatalog,
@@ -51,6 +52,10 @@ const MIDDLEWARE_BASE_URL = Deno.env.get("MIDDLEWARE_URL") || "";
  * anywhere near the system prompt.
  */
 interface ToolFlags {
+  scratch: boolean;
+  scratchRequested: boolean;
+  scratchEdit: boolean;
+  scratchProject: unknown;
   notebook: boolean;
   mail: boolean;
   /** Song generation is available (OpenRouter key present). */
@@ -99,6 +104,10 @@ function readToolFlags(raw: any): ToolFlags {
   const text = (v: unknown, max: number) =>
     typeof v === "string" ? v.replace(/[\r\n]+/g, " ").trim().slice(0, max) : "";
   return {
+    scratch: raw?.scratch === true,
+    scratchRequested: raw?.scratchRequested === true,
+    scratchEdit: raw?.scratch === true && raw?.scratchEdit === true,
+    scratchProject: raw?.scratch === true ? raw?.scratchProject : undefined,
     notebook: raw?.notebook === true,
     mail: raw?.mail === true,
     music: raw?.music === true,
@@ -241,6 +250,8 @@ marking criteria: if the teacher has not given any, ask.`;
 /** Builds the tool part of the system prompt from our own wording. */
 function buildToolSection(flags: ToolFlags, lang: string): string {
   const parts: string[] = [];
+  if (flags.scratch) parts.push(scratchPrompt(true, lang, flags.scratchEdit), scratchDataPrompt(flags.scratchProject));
+  else if (flags.scratchRequested) parts.push(scratchUnavailablePrompt);
   const de = lang === "de";
 
   // Songs only exist on the OpenRouter path, so the instructions are only
@@ -1173,7 +1184,7 @@ async function getModelResponseStream(
         lastStatus = resp.status;
         lastText = await resp.text().catch(() => "");
         tried.push(`${model.id}:${level}`);
-        console.error(`[OR] ${role} ${model.id}:${level} -> ${resp.status} ${lastText.slice(0, 200)}`);
+        console.error(`[OR] ${role} ${model.id}:${level} -> ${resp.status} ${toolFlags.scratch ? "[Scratch: Antwortinhalt nicht protokolliert]" : lastText.slice(0, 200)}`);
       }
       return null;
     };
@@ -1306,7 +1317,7 @@ async function getModelResponseStream(
         lastStatus = resp.status;
         lastText = await resp.text().catch(() => "");
         tried.push(`${model.id}:${level}`);
-        console.error(`[RQ] ${role} ${model.id}:${level} -> ${resp.status} ${lastText.slice(0, 200)}`);
+        console.error(`[RQ] ${role} ${model.id}:${level} -> ${resp.status} ${toolFlags.scratch ? "[Scratch: Antwortinhalt nicht protokolliert]" : lastText.slice(0, 200)}`);
       }
       return null;
     };

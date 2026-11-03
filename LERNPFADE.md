@@ -149,7 +149,14 @@ ohne sie heißt das Fach wie der Ordner.
 | `icon` | nein | Emoji. Vorgabe: 📗 |
 | `accent` | nein | Farbe. Ohne Angabe **erbt das Modul die Farbe des Fachs** |
 | `badge` | nein | Kurzes Kennzeichen auf der Kachel: `"M1"`, `"Jg. 8-10"`, `"Grundkurs"`. Höchstens 12 Zeichen |
-| `level` | nein | Stufe, z. B. `"sek1"` oder `"sek2"`. Module ohne Angabe zählen zu `"sek1"`. Sobald ein Fach Module aus mehr als einer Stufe enthält, erscheinen über den Kacheln Reiter — einer pro Stufe. So liegen z. B. in Informatik die Module M1–M5 unter „Sekundarstufe 1" und ein Oberstufen-Modul unter „Sekundarstufe 2". |
+| `level` | nein | Stufe: `"klasse56"` = Klasse 5–6, `"sek1"` = Sekundarstufe 1, `"sek2"` = Sekundarstufe 2. Ohne Angabe gilt `"sek1"`. Die Fachübersicht filtert über diese Reiter; die Modulansicht bietet zusätzlich die im Fach vorhandenen Stufen an. Geteilte Links öffnen unabhängig vom Filter immer den gewählten Pfad. |
+
+Für Natur und Technik in Klasse 5–6 gelten bewusst kürzere Texte: drei
+Leseseiten mit etwa 80–110 Wörtern pro Sprache, anschließend eine Aufgabenseite
+mit Lückentext, kurzer Erklärfrage und eigener Alltagsidee. Jede Leseseite
+beginnt bei einer vertrauten Situation und endet mit einem klaren Auftrag.
+Die längeren Textkonventionen für ältere Klassen sind hier kein Wortminimum.
+Curriculumabgleich und Sicherheitsgrenzen: `docs/nwt-5-6-curriculum.json`.
 
 Das `badge` ist der praktischste Teil: Damit sieht man auf der Kachel, welchen
 Teil des Lehrplans ein Modul abdeckt, ohne es öffnen zu müssen.
@@ -281,13 +288,25 @@ enthält den Befehl oder die Ausgabe als Text, bei Bedarf mit Zeilenumbrüchen.
 
 Für Abläufe: „erst dies, dann das".
 
+Ein Befehl, ein Beispielergebnis oder ein Link gehört möglichst **in genau
+den Schritt**, in dem er gebraucht wird. Dafür können Schritte zusätzlich
+`code`, `link` oder `download` enthalten. `code` hat `text` und optional
+`caption`, jeweils zweisprachig. `link` enthält ein zweisprachiges `label`
+und eine vollständige Webadresse. `download` enthält ein zweisprachiges
+`label`, eine interne `/api/`-Adresse und den Dateinamen; der Endpunkt muss
+die Datei mit `Content-Disposition: attachment` wirklich herunterladen lassen.
+
 ```json
 {
   "kind": "steps",
   "items": [
     {
       "title": { "de": "Der Blitz", "en": "The flash" },
-      "text": { "de": "Licht braucht praktisch keine Zeit.", "en": "…" }
+      "text": { "de": "Gib diesen Befehl ein.", "en": "Enter this command." },
+      "code": {
+        "caption": { "de": "Jetzt eingeben", "en": "Enter now" },
+        "text": { "de": "ipconfig", "en": "ipconfig" }
+      }
     }
   ]
 }

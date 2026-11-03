@@ -28,6 +28,12 @@ export interface TimelineEntry {
 export interface StepEntry {
   title: Localized;
   text: Localized;
+  /** A command or sample output shown directly inside this step. */
+  code?: { text: Localized; caption?: Localized };
+  /** A reference link shown inside the step that needs it. */
+  link?: SourceLink;
+  /** Same-origin download shown directly beside the instruction to save it. */
+  download?: { label: Localized; url: string; filename: string };
 }
 
 export interface StatEntry {

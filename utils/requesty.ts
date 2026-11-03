@@ -75,6 +75,8 @@ export interface RqCatalogModel {
   roles: RqRole[];
   promptPrice: number;
   completionPrice: number;
+  /** Available when Requesty's live catalogue reports an output cap. */
+  maxOutputTokens?: number;
   context: number;
 }
 
@@ -149,10 +151,24 @@ async function buildCatalog(): Promise<RqCatalog> {
       name: nameOf(m),
       zdr: m.data_retention === false,
       eu: m.geolocation === "eu",
-      free: promptPrice === 0 && completionPrice === 0,
+      free: m.input_price != null && m.output_price != null &&
+        String(m.input_price).trim() !== "" &&
+        String(m.output_price).trim() !== "" &&
+        Number.isFinite(Number(m.input_price)) &&
+        Number.isFinite(Number(m.output_price)) &&
+        promptPrice === 0 && completionPrice === 0,
       roles: rolesOf(m),
       promptPrice,
       completionPrice,
+      maxOutputTokens: Number(
+          m.max_output_tokens ?? m.max_completion_tokens ??
+            m.output_token_limit,
+        ) > 0
+        ? Number(
+          m.max_output_tokens ?? m.max_completion_tokens ??
+            m.output_token_limit,
+        )
+        : undefined,
       context: Number(m.context_window) || 0,
     });
   }

@@ -210,7 +210,77 @@ function parseBlock(raw: any, where: string, p: Problems): Block | null {
         }
         const title = localized(it.title, `${w}.title`, p);
         const text = localized(it.text, `${w}.text`, p);
-        return title && text ? { title, text } : null;
+        let code: { text: Localized; caption?: Localized } | undefined;
+        if (it.code !== undefined) {
+          if (!isObject(it.code)) {
+            p.fail(`${w}.code`, 'must be {"text": ..., "caption": ...}');
+            return null;
+          }
+          const command = localized(it.code.text, `${w}.code.text`, p);
+          const caption = localized(
+            it.code.caption,
+            `${w}.code.caption`,
+            p,
+            false,
+          );
+          if (!command) return null;
+          code = { text: command, ...(caption ? { caption } : {}) };
+        }
+        let link: { label: Localized; url: string } | undefined;
+        if (it.link !== undefined) {
+          if (!isObject(it.link)) {
+            p.fail(`${w}.link`, "must contain label and URL");
+            return null;
+          }
+          const label = localized(it.link.label, `${w}.link.label`, p);
+          const url = str(it.link.url);
+          if (!/^https?:\/\//i.test(url)) {
+            p.fail(`${w}.link.url`, "must start with http:// or https://");
+            return null;
+          }
+          if (!label) return null;
+          link = { label, url };
+        }
+        let download:
+          | { label: Localized; url: string; filename: string }
+          | undefined;
+        if (it.download !== undefined) {
+          if (!isObject(it.download)) {
+            p.fail(`${w}.download`, "must contain label, URL and filename");
+            return null;
+          }
+          const label = localized(
+            it.download.label,
+            `${w}.download.label`,
+            p,
+          );
+          const url = str(it.download.url);
+          const filename = str(it.download.filename);
+          if (!/^\/api\/[a-z0-9/_-]+$/.test(url)) {
+            p.fail(`${w}.download.url`, "must be a same-origin /api/ path");
+          }
+          if (
+            !/^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$/.test(filename) ||
+            filename.includes("..")
+          ) {
+            p.fail(`${w}.download.filename`, "must be a safe filename");
+          }
+          if (
+            !label || !/^\/api\/[a-z0-9/_-]+$/.test(url) ||
+            !/^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$/.test(filename) ||
+            filename.includes("..")
+          ) return null;
+          download = { label, url, filename };
+        }
+        return title && text
+          ? {
+            title,
+            text,
+            ...(code ? { code } : {}),
+            ...(link ? { link } : {}),
+            ...(download ? { download } : {}),
+          }
+          : null;
       }).filter(Boolean);
       return items.length ? { kind, items } as Block : null;
     }
