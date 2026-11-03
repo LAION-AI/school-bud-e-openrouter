@@ -275,6 +275,10 @@ export const handler: Handlers = {
         useThisSttModel = "whisper-1";
       }
 
+      if (!useThisSttUrl) {
+        return new Response("Missing STT URL. Please configure STT settings.", { status: 400 });
+      }
+
       // Forward as OpenAI/Whisper-compatible multipart: file + model
       const sttFormData = new FormData();
       sttFormData.append("file", audioFile);
