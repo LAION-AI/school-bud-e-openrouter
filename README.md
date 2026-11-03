@@ -39,8 +39,8 @@ Batch corrections support PDF, Word, images and ZIP uploads, recoverable
 checkpoints, transcript review and pupil-facing PDF/Word feedback. They remain
 proposals for teacher review, not automatically approved grades.
 
-Learning paths now include a separate Years 5–6 tab with 18 short nature-and-
-technology paths, 24 physics paths and the existing computing curriculum.
+Learning paths include a separate Years 5–6 tab with 18 short nature-and-
+technology paths, introductory and advanced physics, and the computing curriculum.
 See [learning paths](LERNPFADE.md) for editing and readable share links.
 
 For the web app, use Deno 2 with `node:sqlite` support. Run `deno task pyodide`
